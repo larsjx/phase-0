@@ -15,8 +15,8 @@ Similarly, HEAD refers to the current index of staged changes, while HEAD~3, HEA
 (1) A working directory is the checkout of a particular project version or "feature branch". Modifications (new file creation, edits, etc) are first made in the working directory. (2) Some or all of the changes in the working directory are queued up and staged for commit with the command ‘git add [file or directoryname]’ (3) Finally, all of the staged changes are committed to the repository (git directory) as a save point with the command ‘git commit –m “[Add commit message here]”’, or alternatively ‘git commit –v’ which launches a text editor for the entry of a commit message.
 
 # Write a handy cheatsheet of the commands you need to commit your changes?
-git add [file or directoryname] is used to stage changes for commit
-git commit –m “[Add commit message here]” is used to commit a snapshot of those changes
+  - git add [file or directoryname] is used to stage changes for commit
+  - git commit –m “[Add commit message here]” is used to commit a snapshot of those changes
 
 # What is a pull request and how do you create and merge one?
 Pull requests allow other team members to view, comment and/or stop any changes that have been made to a project’s feature branch [branchname] before it gets merged back in with the master branch. To create and merge a pull request:
@@ -29,7 +29,8 @@ Pull requests allow other team members to view, comment and/or stop any changes 
   7. Review the changes that were made and optionally leave a comment that might be helpful
   8. Click on the “Create Pull Request” button again
   9. Click on the “Merge Pull Request” button followed by “Confirm Merge” button
-  10. Finally, as this feature has now been merged back into the master branch it’s safe to delete the feature branch to keep the repo neat. Do this by clicking on the button labeled “Delete Branch”
+  10. Once this feature has been merged back into the master branch it’s safe to delete the feature branch and help keep the repo neat. Do this by clicking on the button labeled “Delete Branch”
+  11. The final step is to update the local copy of your git repository. Do this with the command 'git pull origin master'
 
 # Why are pull requests preferred when working with teams?
 Pull requests are preferred when working with teams because they enable different team members to view and comment and/or stop any changes that have been made to project feature branches before merging them back in with the master branch.
