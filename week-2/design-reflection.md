@@ -10,7 +10,7 @@
 3. Design : Determine the site's look & feel while keeping the target audience in mind. Develop and provide prototype design(s).
 4. Development : Create the home page and a shell for interior pages, refine these and enable key elements such as Content Management System (CMS), forms, carts, etc.
 5. Testing and Delivery : Test things like navigation, complete functionality of forms, scripts, compatability/responsiveness, etc. Install any plugins (wordpress/CMS, SEO) the use FTP and upload to the server(s).
-6.Maintenance : This is the iterative process of developing, testing and deploying new functionality or content updates. A CMS can be leveraged to enable the site owner(s) to perform some of their own content updates.
+6. Maintenance : This is the iterative process of developing, testing and deploying new functionality or content updates. A CMS can be leveraged to enable the site owner(s) to perform some of their own content updates.
 
 
 # What is your site's primary goal or purpose? What kind of content will your site feature?
