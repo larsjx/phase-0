@@ -1,4 +1,4 @@
-# Reflections on Solo Challenge 2.8 - Your Website, part 2
+# Reflections on Solo Challenge 2.8
 
 ## How was your experience translating a wireframe into HTML?
 
@@ -12,4 +12,8 @@ All of the HTML elements that were new to me this week are excluded from use in 
 
 ## Are you excited to start incorporating the design you chose next week?
 
-I am *really* looking forward to start incorporating the design I selected next week. In particular, I'm looking forward to adding a large background image (if I can figure out how to make it scale for different screen sizes) and laying out the two main sections of my [wireframe](imgs/wireframe-index.png).
+I am *really* looking forward to start incorporating the design I selected next week. In particular, I'm looking forward to:
+
+  * adding a large background image (if I can figure out how to make it scale for different screen sizes)
+  * laying out the two main sections of my updated [wireframe](imgs/wireframe-index2.png)
+  * incorporating color and text styling.
