@@ -2,7 +2,7 @@
 
 ## How was your experience translating a wireframe into HTML?
 
-I enjoyed the experience of translating my wireframes into HTML. However, I ended up revising them a few times before doing so. My original design included a search box and a drop down navigation panel, I thought it looked nice, but I realized the search box was unneccesary and the navigation panel would have been confusing to people unfamiliar with a [hamburger icon](http://blog.placeit.net/history-of-the-hamburger-icon/). These changes took some time, but they resulted in a user friendly design that was ultimately easy to translate into HTML.
+I enjoyed the experience of translating my wireframes into HTML. However, I ended up revising them a few times before doing so. My original design included a search box and a drop down navigation panel, I thought it looked nice, but I realized the search box was unneccessary and the navigation panel would have been confusing to people unfamiliar with a [hamburger icon](http://blog.placeit.net/history-of-the-hamburger-icon/). These changes took some time, but they resulted in a user friendly design that was ultimately easy to translate into HTML.
 
 
 ## What new tricks or elements did you learn about in HTML?
