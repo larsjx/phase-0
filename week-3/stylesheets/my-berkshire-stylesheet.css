@@ -1,0 +1,82 @@
+html {
+    color: #000080;
+    a:link: #800080;
+    a:visit: #FF0000;
+    background-color: #ffffff;
+}
+
+.list {
+    height: 24em;
+    margin-left: 5%;
+    margin-bottom: 5em;
+    margin-top: -1em;
+}
+
+li {
+    list-style-type: disc;
+}
+
+.list li {
+    line-height: 3em;
+    float: left;
+    width: 48%;
+}
+
+.list span {
+    display: block;
+    font-size: .65em;
+    margin-top: -35px;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.center span {
+    font-size: 2.2em;
+}
+
+.suffix {
+    margin-left: -5px;
+    font-size: 1.2em;
+    display: inline;
+}
+
+.bolder {
+    font-weight: bold;
+}
+
+.smaller {
+    font-size: .75em;
+    display: inline;
+}
+
+.hline {
+    border-top: 1px solid gray;
+    margin-top: 1em;
+    padding-bottom: 1em;
+}
+
+.small {
+    font-size: .65em;
+}
+
+.comments {
+    font-size: .75em;
+}
+
+.legal {
+     padding-top: 1em;
+}
+
+.small span {
+    font-weight: bold;
+}
+
+.address {
+    font-size: .80em;
+    font-weight: bold;
+}
+
