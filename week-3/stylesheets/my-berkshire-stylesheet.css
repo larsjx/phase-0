@@ -1,82 +1,105 @@
 html {
     color: #000080;
-    a:link: #800080;
-    a:visit: #FF0000;
     background-color: #ffffff;
 }
 
-.list {
-    height: 24em;
-    margin-left: 5%;
-    margin-bottom: 5em;
-    margin-top: -1em;
+a:link {
+    color: #800080;
 }
 
-li {
-    list-style-type: disc;
+a:visited {
+    color: #FF0000;
 }
 
-.list li {
-    line-height: 3em;
-    float: left;
-    width: 48%;
+.bold {
+    font-weight: bold;
 }
 
-.list span {
-    display: block;
-    font-size: .65em;
-    margin-top: -35px;
+.sm-inc {
+    font-size: .8em;
+    display: inline;
 }
 
-.center {
+.pad-t {
+     padding-top: 1.3em;
+}
+
+.pad-b {
+    padding-bottom: 1em;
+}
+
+.h-line {
+    clear: both;
+    border-top: 1px solid gray;
+    margin-top: 1em;
+}
+
+/* ----------------------- */
+
+.heading {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
 
-.center span {
-    font-size: 2.2em;
+.heading span {
+    font-size: 2.0em;
 }
 
-.suffix {
+.sm-caps {
     margin-left: -5px;
-    font-size: 1.2em;
+    font-size: 1.15em;
     display: inline;
-}
-
-.bolder {
-    font-weight: bold;
-}
-
-.smaller {
-    font-size: .75em;
-    display: inline;
-}
-
-.hline {
-    border-top: 1px solid gray;
-    margin-top: 1em;
-    padding-bottom: 1em;
-}
-
-.small {
-    font-size: .65em;
-}
-
-.comments {
-    font-size: .75em;
-}
-
-.legal {
-     padding-top: 1em;
-}
-
-.small span {
-    font-weight: bold;
 }
 
 .address {
     font-size: .80em;
+}
+
+/* ----------------------- */
+
+.list {
+    height: 27em;
+    /*margin-bottom: 5em; */
+    margin-left: 5%;
+    margin-top: -1.8em;
+}
+
+.list li {
+    list-style-type: disc;
+    line-height: 2.8em;
+    float: left;
+    width: 50%;
+}
+
+.list span {
+    display: block;
+    font-size: .65em;
+    margin-top: -25px;
+}
+
+/* ----------------------- */
+
+.footing {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -10px;
+    text-align: center;
+}
+
+.sm {
+    font-size: .65em;
+}
+
+.sm span {
     font-weight: bold;
+}
+
+.footing span {
+    font-size: 2.2em;
+}
+
+.comments {
+    font-size: .81em;
 }
 
