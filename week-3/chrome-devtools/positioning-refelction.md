@@ -2,7 +2,7 @@
 
 ## How can you use Chrome's DevTools inspector to help you format or position elements?
 
-We positioned our DevTools at the bottom of our screen and used the DOM tree on the left to identify and select different elements (nodes) that we wanted to work with. In this case we were formatting and positioning 4 different <div>s. After selecting a particular div to work on, we used the style pane on the right to enable/disable and edit CSS properties such as; position, margin, padding, top, left, background-color, etc. to format and position the <div>s.
+We positioned our DevTools at the bottom of our screen and used the DOM tree on the left to identify and select different elements (nodes) that we wanted to work with. In this case we were formatting and positioning 4 different divs. After selecting a particular div to work on, we used the style pane on the right to enable/disable and edit CSS properties such as; position, margin, padding, top, left, background-color, etc. to format and position the divs.
 
 
 ## How can you resize elements on the DOM using CSS?
