@@ -34,7 +34,7 @@ a:visited {
     margin-top: 1em;
 }
 
-/* ----------------------- */
+/* ----------------------- header */
 
 .heading {
     margin-left: auto;
@@ -56,11 +56,10 @@ a:visited {
     font-size: .80em;
 }
 
-/* ----------------------- */
+/* ----------------------- list of links */
 
 .list {
     height: 27em;
-    /*margin-bottom: 5em; */
     margin-left: 5%;
     margin-top: -1.8em;
 }
@@ -78,7 +77,7 @@ a:visited {
     margin-top: -25px;
 }
 
-/* ----------------------- */
+/* ----------------------- footer */
 
 .footing {
     margin-left: auto;
@@ -103,3 +102,31 @@ a:visited {
     font-size: .81em;
 }
 
+/* ----------------------- 3.3 REFLECTION
+
+## What is important to know when linking an external file (like a stylesheet) to an HTML file?
+
+    First, it's important to know the relative path and file name of the file you are linking (for the href attribute of the link element). Second, it's important to understand the relationship type of the resource being linked, e.g., stylesheet (for the rel attribute of the link element).
+
+
+## What tricks did you use to help you with positioning? How hard was it to get the site as you wanted it?
+
+    There are basically only 3 key DOM nodes which needed positioning in this exercise and all of them are statically positioned. The header and top section of the footer required centering on the horizontal axis, and the third item required setting a margin, width and 2 column format for the unordered list in our document's main section. None of this was especially difficult, but it was time consuming as my pair and I adjusted values over and over to make our replica website as close to the original as possible.
+
+    To center the header and footer we used margin-left/right: auto and text-align: center. Getting our 2 column list in place and flowing properly was more of a challenge. First we set the height/margins for position and white space. Next we set line height (for separation between bulleted line items), and finally to put our list in 2 column format we assigned float to left and width to 50%. In order to target the subtext of our bulleted list we used spans. We set display to block so each span would end up right underneath the proper bullet and then we made each span very small with font-size and adjusted its top margin to -25 bringing it closer to bulleted item above.
+
+## What CSS did you use to modify the element style (like size, color, etc.)
+
+    We primarily used the CSS properties font-size, font-weight and color to modify element style. This particular page required many combinations of these properties to achieve the desired effect. The very first line for example, is all bold, has the initial letters B (of Berkshire) and H (of Hathaway) in a larger font than erkshire and athaway, plus the last word, INC.is smaller than all of the letters before it.
+
+## Did you modify the HTML to include classes or ids? If so, which did you chose and why? If you didn't, how would you know which one to add to your HTML?
+
+    We used classes (instead of IDs) in our HTML because we wanted to design in as much reusability as possible. We also tried to create some atomic structure with our classes creating re-usable elements such as pad-t (padding-top), pad-b (padding-bottom), h-line (horizontal line), bold, and sm (small font).
+
+## When you compared your site to the actual code base, which do you think had cleaner code that followed best practices and why?
+
+    While there is still much room for improvement, I think our code is cleaner than the original. Our version has better formatting and it's easier to read because it's broken into semantic sections and we used classes for CSS that are simple and easy to follow.
+
+    We kept our code HTML5 compliant (it passes validation) and I also think we followed more best practices than the original site does. For example, we avoided inline styling and used CSS for styling and layout instead. We did not use any tables for non-tabular data and we didn't use the hr tag as a horizontal line.
+
+----------------------- */
