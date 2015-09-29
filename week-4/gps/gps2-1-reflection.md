@@ -1,5 +1,14 @@
 # GPS 2.1 Reflection
 
+## Our wireframe
+
+![css-wireframe](gps2-1-css-wireframe.png)
+
+## Cheatsheet updated with CSS
+
+![Git Cheatsheet](gps2-1-git-cheatsheet.png)
+
+
 ## Did you feel more confident with CSS positioning?
 
 I felt a bit more confident with CSS positioning, but still not 100%. We decided to use static positioning and floats to achieve our column separation and to position the Octocat image in our header. This also allowed our footer to flow naturally below the 2 columns so all we had to do was apply a bit of margin and center the text.
