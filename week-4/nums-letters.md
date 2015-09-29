@@ -1,4 +1,4 @@
-# Challenge 4.1
+# Challenge 4.2
 
 ## R1: Numbers in Ruby
 
@@ -64,7 +64,7 @@
 
 ### What are strings? Why and when would you use them?
 
-**Strings** are groups of characters enclosed in quotation marks. They can contain spaces or even be empty. Under the right conditions strings can be added and multiplied. For example:
+  **Strings** are groups of characters enclosed in quotation marks. They can contain spaces or even be empty. Under the right conditions strings can be added and multiplied. For example:
 
 ```ruby
     "Octo" + "cat" = "Octocat"
@@ -74,11 +74,11 @@
 
 ### What are local variables? Why and when would you use them?
 
-**Variables** are like re-usable storage containers for different objects (like strings or numbers). We can assign an object to a variable and then re-use that variable in place of the object.
+  **Variables** are like re-usable storage containers for different objects (like strings or numbers). We can assign an object to a variable and then re-use that variable in place of the object.
 
-**Local variables** are variables with local scope, meaning they will only be recognized within certain parts of a program. This is in contrast to **global variables** which are recognized throughout an entire program.
+  **Local variables** are variables with local scope, meaning they will only be recognized within certain parts of a program. This is in contrast to **global variables** which are recognized throughout an entire program.
 
 
 ### How was this challenge? Did you get a good review of some of the basics?
 
-This is was a worthwhile challenge for me. Just when I thought it was a bit too easy, I allowed a one-letter typo in **basic-math.rb** to really confuse me. When I executed **rspec basic-math.rb** it gave me about 12 lines of error and none of them were rspec errors. I wasn't sure what was happening, but ultimately, I discovered the typo and everything worked fine.
+  This is was a worthwhile challenge for me. Just when I thought it was a bit too easy, I allowed a one-letter typo in **basic-math.rb** to really confuse me. When I executed **rspec basic-math.rb** it gave me about 12 lines of error and none of them were rspec errors. I wasn't sure what was happening, but ultimately, I discovered the typo and everything worked fine.
