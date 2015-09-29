@@ -1,3 +1,41 @@
-body {
-background-color: lightblue;
+/* * {
+    border: 1px solid red;
 }
+*/
+body {
+    background-color: lightblue;
+}
+
+.octocat {
+    width: 15%;
+    float: left;
+    margin-right: 5%;
+    border-radius: 40%;
+}
+.column-1 {
+    display: inline-block;
+    float: left;
+    position: relative;
+    width: 45%;
+    margin-left: 2%;
+}
+
+.column-2 {
+    display: inline-block;
+    float: right;
+    position: relative;
+    width: 45%;
+}
+
+footer {
+    margin: 3em 0 3em 0;
+    padding-top: 3em;
+    clear: both;
+    text-align: center;
+}
+
+header {
+    padding: 3em 3em 3em 3em;
+    font: 1.25em Garramond;
+}
+
