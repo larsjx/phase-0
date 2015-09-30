@@ -1,6 +1,12 @@
 # Leap Years
 
-# I worked on this challenge [ Gabrielle Gustilo ].
+# I worked on this challenge with Gabrielle Gustilo
+
+# Create a method leap_year? that accepts an integer representing a year as input.
+
+# It should return true if the year input is a leap year and false otherwise.
+
+# Your Solution Below
 
 def leap_year?(year)
 
@@ -20,7 +26,3 @@ else return false
 end
 
 end
-
-
-
-# Your Solution Below
