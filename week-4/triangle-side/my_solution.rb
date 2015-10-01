@@ -11,54 +11,17 @@
 # valid triangle (no zero side)
 
 def valid_triangle?(a, b, c)
-	#equilateral
-	if a == b && b == c
-		return true
-	end
 
-	#valid triangle
-
-	if a || b || c == 0
-		return false
-	end
-
-	#pythagorean/right triangle
-	if a + b > c && a + c > b && b + c > a
+	if (a + b > c) && (a + c > b) && (b + c > a)
         return true
     else
         return false
     end
 
-
-
-	# if a + b > c
-	# 	return true
-	# 	if a + c > b
-	# 		return true
-	# 	 if b + c > a
-	# 	 	return true
-	# 	 end
-	# 	end
-	# else
-	# 	return false
- #  end
-
-	# if a**2 + b**2 == c**2
-	# 	return true
-	# end
-
-	#isosceles
-	if a == b && a >= c
-		return true
-	elsif b == c && b >= a
-		return true
-	elsif c == a && c >= b
-		return true
-	else
-		return false
-	end
-
 end
+
+p valid_triangle?(3,4,5)
+
 
 # The arguments don't correspond to specific sides. Don't worry about handling negative inputs — garbage in gets garbage out.
 
