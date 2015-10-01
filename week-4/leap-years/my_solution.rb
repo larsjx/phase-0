@@ -1,6 +1,6 @@
 # Leap Years
 
-# I worked on this challenge with Gabrielle Gustilo
+# I worked on this challenge with: Gabrielle Gustilo
 
 # Create a method leap_year? that accepts an integer representing a year as input.
 
@@ -14,15 +14,12 @@ if year % 4 == 0 && year % 100 != 0
   return true
 end
 
-if year % 4 == 0
-  if year % 100 == 0
+if year % 4 == 0 && year % 100 == 0
     if year % 400 == 0
       return true
-    else return false
+      else return false
     end
   else return false
-  end
-else return false
 end
 
 end
