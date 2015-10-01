@@ -23,16 +23,36 @@ def valid_triangle?(a, b, c)
 	end
 
 	#pythagorean/right triangle
-	if a**2 + b**2 == c**2
-		return true
-	end
+	if a + b > c && a + c > b && b + c > a
+        return true
+    else
+        return false
+    end
+
+
+
+	# if a + b > c
+	# 	return true
+	# 	if a + c > b
+	# 		return true
+	# 	 if b + c > a
+	# 	 	return true
+	# 	 end
+	# 	end
+	# else
+	# 	return false
+ #  end
+
+	# if a**2 + b**2 == c**2
+	# 	return true
+	# end
 
 	#isosceles
-	if a == b && c < a
+	if a == b && a >= c
 		return true
-	elsif b == c && a < b
+	elsif b == c && b >= a
 		return true
-	elsif a == c && b < c
+	elsif c == a && c >= b
 		return true
 	else
 		return false
