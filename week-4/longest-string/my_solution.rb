@@ -1,6 +1,6 @@
 # Longest String
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge: By myself
 
 # longest_string is a method that takes an array of strings as its input
 # and returns the longest string
@@ -11,7 +11,8 @@
 # If +list_of_words+ is empty the method should return nil
 
 
-# Your Solution Below
+# My original solution using iteration
+
 def longest_string(list_of_words)
   if list_of_words == []
     answer = nil
@@ -29,4 +30,4 @@ def longest_string(list_of_words)
 end
 
 
-# Refactored Solution
+# My refactored solution

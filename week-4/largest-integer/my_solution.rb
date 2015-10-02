@@ -1,6 +1,6 @@
 # Largest Integer
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge: By myself
 
 # largest_integer is a method that takes an array of integers as its input
 # and returns the largest integer in the array
@@ -10,7 +10,8 @@
 #
 # If +list_of_nums+ is empty the method should return nil
 
-# Your Solution Below
+# My original solution using iteration
+
 def largest_integer(list_of_nums)
   if list_of_nums.length == 0
     answer = nil
@@ -24,4 +25,4 @@ def largest_integer(list_of_nums)
   return answer
 end
 
-# Refactored Solution
+# My refactored solution

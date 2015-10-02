@@ -1,6 +1,6 @@
 # Shortest String
 
-# I worked on this challenge [by myself, with: ].
+# I worked on this challenge: By myself
 
 # shortest_string is a method that takes an array of strings as its input
 # and returns the shortest string
@@ -10,7 +10,8 @@
 #
 # If +list_of_words+ is empty the method should return nil
 
-#Your Solution Below
+# My original solution using iteration
+
 def shortest_string(list_of_words)
   if list_of_words == []
     answer = nil
@@ -28,4 +29,4 @@ def shortest_string(list_of_words)
 end
 
 
-# Refactored Solution
+# My refactored solution
