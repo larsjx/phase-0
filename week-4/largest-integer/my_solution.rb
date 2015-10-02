@@ -26,3 +26,9 @@ def largest_integer(list_of_nums)
 end
 
 # My refactored solution
+
+def largest_integer(list_of_nums)
+  p list_of_nums.sort.reverse![0]
+end
+
+largest_integer([1,5,100,13,50,36])

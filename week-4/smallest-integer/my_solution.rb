@@ -25,5 +25,11 @@ def smallest_integer(list_of_nums)
   return answer
 end
 
+
 # My refactored solution
 
+def smallest_integer(list_of_nums)
+  list_of_nums.sort![0]
+end
+
+smallest_integer([1,5,10,13,50,36])

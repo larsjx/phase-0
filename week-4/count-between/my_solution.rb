@@ -27,6 +27,18 @@ def count_between(list_of_integers, lower_bound, upper_bound)
   end
   p total
 end
-count_between([1,3,5,10,14,28,56], 5, 57)
 
 # My refactored solution
+
+def count_between(list_of_integers, lower_bound, upper_bound)
+  total = 0
+  list_of_integers.each { |x|
+    if x >= lower_bound && x <= upper_bound
+      total += 1
+    end
+  }
+  p total
+end
+
+# count_between([1,3,5,10,14,100,28,56], 3, 57)
+
