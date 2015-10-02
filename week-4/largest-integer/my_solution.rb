@@ -10,6 +10,7 @@
 #
 # If +list_of_nums+ is empty the method should return nil
 
+
 # My original solution using iteration
 
 def largest_integer(list_of_nums)
@@ -25,10 +26,21 @@ def largest_integer(list_of_nums)
   return answer
 end
 
-# My refactored solution
+
+# My 1st refactored solution
 
 def largest_integer(list_of_nums)
   p list_of_nums.sort.reverse![0]
 end
+
+
+# My FINAL refactored solution
+
+def largest_integer(list_of_nums)
+  list_of_nums.max
+end
+
+
+# My own test data
 
 largest_integer([1,5,100,13,50,36])
