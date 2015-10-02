@@ -30,3 +30,10 @@ end
 
 
 # My refactored solution
+
+def shortest_string(list_of_words)
+  p list_of_words.sort! { |x, y| x.length <=> y.length }[0]
+end
+
+shortest_string(["gate", "let", "be", "caterpillar", "fellow", "cookery"])
+
