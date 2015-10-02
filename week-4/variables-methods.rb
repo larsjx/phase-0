@@ -49,3 +49,10 @@ puts "If you like #{fav_num}, you will really #{better_num} as it's even bigger 
 
 #  The basics that we have been reviewing so far all make sense to me. I don't think anything up to and including this challenge (4.3) has really confused me. However, I don't expect that to be the case for very much longer :-).
 
+# Links to related challenges
+
+# 4.3.1 Return a Formatted Address
+# https://github.com/larsjx/phase-0/blob/master/week-4/address/my_solution.rb
+
+# 4.3.2 Defining Math Methods
+# https://github.com/larsjx/phase-0/blob/master/week-4/math/my_solution.rb
