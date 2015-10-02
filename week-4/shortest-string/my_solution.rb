@@ -10,6 +10,7 @@
 #
 # If +list_of_words+ is empty the method should return nil
 
+
 # My original solution using iteration
 
 def shortest_string(list_of_words)
@@ -29,11 +30,14 @@ def shortest_string(list_of_words)
 end
 
 
-# My refactored solution
+# My FINAL refactored solution
 
 def shortest_string(list_of_words)
   p list_of_words.sort! { |x, y| x.length <=> y.length }[0]
 end
 
-shortest_string(["gate", "let", "be", "caterpillar", "fellow", "cookery"])
+
+# My own test data
+
+shortest_string(["gate", "let", "ya", "caterpillar", "fellow", "cookery"])
 

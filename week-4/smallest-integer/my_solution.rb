@@ -10,6 +10,7 @@
 #
 # If +list_of_nums+ is empty the method should return nil
 
+
 # My original solution using iteration
 
 def smallest_integer(list_of_nums)
@@ -26,10 +27,20 @@ def smallest_integer(list_of_nums)
 end
 
 
-# My refactored solution
+# My 1st refactored solution
 
 def smallest_integer(list_of_nums)
   list_of_nums.sort![0]
 end
+
+
+# My FINAL refactored solution
+
+def smallest_integer(list_of_nums)
+  list_of_nums.min
+end
+
+
+# My own test data
 
 smallest_integer([1,5,10,13,50,36])

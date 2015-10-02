@@ -12,6 +12,7 @@
 #
 # If +array+ is empty the method should return 0
 
+
 # My original solution using iteration
 
 def count_between(list_of_integers, lower_bound, upper_bound)
@@ -28,6 +29,7 @@ def count_between(list_of_integers, lower_bound, upper_bound)
   p total
 end
 
+
 # My refactored solution
 
 def count_between(list_of_integers, lower_bound, upper_bound)
@@ -40,5 +42,7 @@ def count_between(list_of_integers, lower_bound, upper_bound)
   p total
 end
 
-# count_between([1,3,5,10,14,100,28,56], 3, 57)
+
+# My own test data
+count_between([1,3,5,10,14,100,28,56], 3, 57)
 

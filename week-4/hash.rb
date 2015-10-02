@@ -6,16 +6,17 @@
 # My original solution
 # my_info is empty to start.  Edit this!
 
-# my_info = Hash.new
-# my_info[:first_name] = "Lars"
-# my_info[:last_name] = "Johnson"
-# my_info[:hometown] = "Chicago"
-# my_info[:age] = 47
 
-# my_info.each { |k, info| p info }
+my_info = Hash.new
+my_info[:first_name] = "Lars"
+my_info[:last_name] = "Johnson"
+my_info[:hometown] = "Chicago"
+my_info[:age] = 47
+
+my_info.each { |k, info| p info }
 
 
-# My refactored solution
+# My FINAL refactored solution
 
 my_info = Hash.new
 my_info = { :first_name => "Lars",

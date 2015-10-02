@@ -30,11 +30,14 @@ def longest_string(list_of_words)
 end
 
 
-# My refactored solution
+# My FINAL refactored solution
 
 def longest_string(list_of_words)
   p list_of_words.sort! { |x, y| y.length <=> x.length }[0]
 end
+
+
+# My own test data
 
 longest_string(["gate", "let", "be", "caterpillar", "fellow", "cookery"])
 
