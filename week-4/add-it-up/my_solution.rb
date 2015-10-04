@@ -1,19 +1,19 @@
 # Add it up!
 
+# I worked on this challenge with Becca Nelson
+
+
 # Complete each step below according to the challenge directions and
 # include it in this file. Also make sure everything that isn't code
 # is commented in the file.
 
-# I worked on this challenge with Becca Nelson
 
-# 0. total Pseudocode
-# make sure all pseudocode is commented out!
+#0. Pseudocode for total
 
 # Input:   An array of integers
 # Output:  The sum of the numbers in the array
 
 # Steps to solve the problem.
-
   # Receive an array of numbers
   # Set variable for sum to zero
   # Set counter to 0
@@ -24,7 +24,7 @@
   # Return variale for sum
 
 
-# 1. total initial solution
+#1. Initial solution for total
 
 def total(numbers)
   sum = 0
@@ -35,22 +35,20 @@ def total(numbers)
   end
   return sum
   puts sum
-  end
+end
 
-# 3. total refactored solution
+
+#2. Refactored solution for total
 
 def total(numbers) numbers.reduce(:+) end
 
 
-# 4. sentence_maker pseudocode
-# make sure all pseudocode is commented out!
+#3. Pseudocode for sentence_maker
 
 # Input:   An array of strings (words) and numbers
 # Output:  Grammatically correct sentences with capitalization and period
 
-
 # Steps to solve the problem.
-
   # Receive an array of strings (words) and numbers
   # Initialize variable for completed sentance
   # Capitalize the first letter of the first string
@@ -64,29 +62,37 @@ def total(numbers) numbers.reduce(:+) end
   # Return variable for completed sentence
 
 
-# 5. sentence_maker initial solution
-
+#4. Initial solution for sentence_maker
 
 sentence_maker=[]
 def sentence_maker(words)
-text = ""
-words[0].capitalize!
-words[words.length-1] = words[words.length-1]+"."
-text = text + words[0]
-for i in 1..words.length-1
-  text = text + " " + words[i].to_s
-  i += 1
+  text = ""
+  words[0].capitalize!
+  words[words.length-1] = words[words.length-1]+"."
+  text = text + words[0]
+  for i in 1..words.length-1
+    text = text + " " + words[i].to_s
+    i += 1
+  end
+  puts text
+  return text
 end
-puts text
-return text
-end
-
-sentence_maker (["all", "my", "socks", "are", "dirty"])
 
 
-# 6. sentence_maker refactored solution
+#5. First refactored solution for sentence_maker
 
 def sentence_maker(words)
   words[0].capitalize!
   return words.join(" ") + "."
 end
+
+
+#6. FINAL refactored solution for sentence_maker
+
+def sentence_maker(words)
+  p (words.join(" ") + ".").capitalize
+end
+
+# My test data for sentence_maker
+
+sentence_maker (["all", "my", "socks", "are", "dirty"])

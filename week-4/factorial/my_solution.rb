@@ -4,24 +4,21 @@
 
 
 # Your Solution Below
+
 def factorial(number)
-  # Your code goes here
-
-if number == 0 || number == 1
-  return 1
+  if number == 0 || number == 1
+    return 1
+  end
+  result = 1
+  for i in 1..number
+    result = result * i
+    i =+1
+  end
+  return result
 end
 
-result = 1
-for i in 1..number
-  result = result * i
-  i =+1
-end
-return result
-end
 
-# factorial 5
-
-# Pseudocode
+# Pseudocode for factorial challenge
 
 # Receive provided number
 # Set result equal to one
@@ -30,3 +27,15 @@ end
 #   add 1 to counter
 # REPEAT
 # Return result
+
+
+# FINAL refactored solution
+
+def factorial(number)
+  p (1..number).to_a.reduce(1, :*)
+end
+
+
+# My test data
+
+factorial(5)
