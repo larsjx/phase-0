@@ -30,10 +30,17 @@ def shortest_string(list_of_words)
 end
 
 
-# My FINAL refactored solution
+# My first refactored solution
 
 def shortest_string(list_of_words)
   p list_of_words.sort! { |x, y| x.length <=> y.length }[0]
+end
+
+
+# My FINAL refactored solution
+
+def shortest_string(list_of_words)
+  p list_of_words.min { |x, y| x.length <=> y.length }
 end
 
 

@@ -30,7 +30,7 @@ def count_between(list_of_integers, lower_bound, upper_bound)
 end
 
 
-# My refactored solution
+# My first refactored solution
 
 def count_between(list_of_integers, lower_bound, upper_bound)
   total = 0
@@ -40,6 +40,13 @@ def count_between(list_of_integers, lower_bound, upper_bound)
     end
   }
   p total
+end
+
+
+# My FINAL refactored solution
+
+def count_between(list_of_integers, lower_bound, upper_bound)
+  p list_of_integers.count { |x| x >= lower_bound && x <= upper_bound }
 end
 
 
