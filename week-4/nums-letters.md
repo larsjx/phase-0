@@ -2,6 +2,13 @@
 
 ## R1: Numbers in Ruby
 
+### Links to each solution:
+
+[defining-variables.rb](https://github.com/larsjx/phase-0/blob/master/week-4/defining-variables.rb)
+[simple-string.rb](https://github.com/larsjx/phase-0/blob/master/week-4/simple-string.rb)
+[basic-math.rb](https://github.com/larsjx/phase-0/blob/master/week-4/basic-math.rb)
+
+
 ### 1. What does puts do?
 
   **puts** will return *nil* and print the output to the console with a new line
