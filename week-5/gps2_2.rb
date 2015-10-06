@@ -29,7 +29,7 @@ CALL Method to print list
 
 # =====================================================
 
-# RELEASE 2 OUR INITIAL SOLUTION
+# RELEASE 2: OUR INITIAL SOLUTION
 
 def add_update(grocery_list, item, qty)
   grocery_list[item] = qty
@@ -47,7 +47,7 @@ end
 
 # =====================================================
 
-# RELEASE 3 OUR TESTS ON THE INITIAL SOLUTION
+# RELEASE 3: OUR TESTS ON THE INITIAL SOLUTION
 
 # Create new list with the following items
 
@@ -71,7 +71,7 @@ print(grocery_list)
 
 # =====================================================
 
-# RELEASE 4: OUR REFACTORED SOLUTION
+# RELEASE 4: OUR REFACTORED SOLUTION INCLUDING TESTS
 
 grocery_list = { "Lemonade" => 2,
                 "Tomatoes" => 3,
@@ -92,7 +92,7 @@ def print(grocery_list)
   puts
 end
 
-remove(grocery_list, "Lemonade", "0")
+remove(grocery_list, "Lemonade", 0)
 
 add_update(grocery_list, "Ice Cream", 1)
 
