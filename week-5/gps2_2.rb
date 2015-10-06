@@ -27,14 +27,9 @@ CALL Method to print list
 
 =end
 
-# --------------------------------------------------------
+# =====================================================
 
-# RELEASE 4: OUR REFACTORED SOLUTION
-
-grocery_list = { "lemonade" => 2,
-                "tomatoes" => 3,
-                "onions" => 1,
-                "ice cream" => 4 }
+# RELEASE 2 OUR INITIAL SOLUTION
 
 def add_update(grocery_list, item, qty)
   grocery_list[item] = qty
@@ -50,13 +45,60 @@ def print(grocery_list)
   puts
 end
 
-remove(grocery_list, "lemonade", "0")
+# =====================================================
 
-add_update(grocery_list, "ice cream", 1)
+# RELEASE 3 OUR TESTS ON THE INITIAL SOLUTION
+
+# Create new list with the following items
+
+grocery_list = Hash.new
+add_update(grocery_list, "Lemonade", 2)
+add_update(grocery_list, "Tomatoes", 3)
+add_update(grocery_list, "Onions", 1)
+add_update(grocery_list, "Ice Cream", 4)
+
+# Remove the lemonade
+
+remove(grocery_list, "Lemonade", 0)
+
+# Update the ice Cream Auantity to 1
+
+add_update(grocery_list, "Ice Cream", 1)
+
+# Print out the list
 
 print(grocery_list)
 
-# --------------------------------------------------------
+# =====================================================
+
+# RELEASE 4: OUR REFACTORED SOLUTION
+
+grocery_list = { "Lemonade" => 2,
+                "Tomatoes" => 3,
+                "Onions" => 1,
+                "Ice Cream" => 4 }
+
+def add_update(grocery_list, item, qty)
+  grocery_list[item] = qty
+end
+
+def remove(grocery_list, item, qty)
+  grocery_list.delete(item)
+end
+
+def print(grocery_list)
+  puts
+  grocery_list.each {|k, v| puts "   #{v}  #{k}" }
+  puts
+end
+
+remove(grocery_list, "Lemonade", "0")
+
+add_update(grocery_list, "Ice Cream", 1)
+
+print(grocery_list)
+
+# =====================================================
 
 =begin
 
