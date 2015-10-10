@@ -93,7 +93,7 @@ end
 
 2. What new Ruby methods did you implement? What challenges and successes did you have in implementing them?
 
-    In this solution the only new method that I used was ArgumentError and since I didn't run into any challenges I guess we can call that a success.
+    In this solution the only new method that I used was ArgumentError and since I didn't really run into any challenges I guess we can call that a success.
 
 3. What is a Ruby class?
 
@@ -105,10 +105,10 @@ end
 
 5. What is the difference between a local variable and an instance variable?
 
-    A local variable is scope-limited to only retain its value within the method in which it was called. An instance variable is designed to give multiple objects (instances) different values. For example, if we used a local variable to set the color of coat, each coat would need it's own method to....
+    A local variable is scope-limited to only retain its value within the method in which it was called. An instance variable is designed to give multiple objects (instances) different values. For example, if we wanted to set the color of 3 different coats to charcoal, black and navy, we could use three different local variable or the same instance variable on three different objects. The latter makes more sense and it's more efficient.
 
 6. Where can an instance variable be used?
 
-    ....
+    An instance variable is typically used to hold and communicate the state of an object (instance). They can be used during the initialization of a class (for example, in setting up arguments for the class) or inside any method within the class. Instance variables also start with @, they're only visible to the object they belong to, and they can be used by any method or instance within their class.
 
 =end
