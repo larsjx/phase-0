@@ -76,30 +76,7 @@ separate_comma(100000000)
 
 
 # --------------------------------------------------------
-# 2. FIRST REFACTORED SOLUTION
-# --------------------------------------------------------
-
-def separate_comma(num)
- result = []
- i = -1
-  arr = num.to_s.reverse.split("")
-  arr.each { |digit| i += 1
-    if i != 0 && i % 3 == 0
-      result << digit + ","
-    else
-      result << digit
-    end
-  }
-  p result.reverse.join
-end
-
-
-### SAMPLE INPUT FOR PERSONAL TESTING
-separate_comma(100000000)
-
-
-# --------------------------------------------------------
-# 2b. FINAL REFACTORED SOLUTION
+# 2. FINAL REFACTORED SOLUTION
 # --------------------------------------------------------
 
 def separate_comma(num)
@@ -132,11 +109,15 @@ separate_comma(100000000)
     I started by writing a few different numbers down 1,000, 10,0000, etc. and looking at them carefully. Three things became clear while I was doing this. First I didn't think it was possible to split an integer value into it's component elements without turning it into a string. Second, I realized that breaking a string into pieces, inserting commas, and putting it back together could be done by converting it into an array and then back into a string. Third, it occured to me that trying to add commas from left to right would take far more logic than simply adding them after every third position from right to left.
     Since I had just realized the value of pseudocode in hindsight on another project, I was eager to jump into that next.
 
+
 2. Was your pseudocode effective in helping you build a successful initial solution?
 
     My pseudocode isn't a one for one map to my Ruby code, but it was absolutely effective in helping me build a successful initial solution. I tested my code frequently as I was working through each step of the solution and there were a couple of points along the way, when I realized there were a few errors in the logic of my pseudocode. I wasn't far off at all, but enough that I had to resolve those issues in order to make the solution work. For example, in trying to insert a comma after every third digit from the right, I encountered the problem that my 4th digit was getting replaced by the comma. Once I saw what was happening, it was relatively easy to fix.
 
+
 3. What Ruby method(s) did you use when refactoring your solution? What difficulties did you have implementing it/them? Did it/they significantly change the way your code works? If so, how?
+
+    I wound up sticking with .reverse, .split, .join and .each because I didn't find any other solutions. I plan to continue looking if I have time after completing all of this week's assignments.
 
 
 4. How did you initially iterate through the data structure?
@@ -146,7 +127,7 @@ separate_comma(100000000)
 
 5. Do you feel your refactored solution is more readable than your initial solution? Why?
 
-
+    I believe my final refactored solution is a bit more readable than my initial solution because it is more concise. However, my refactored solution is not very different from my original solution because I still haven't found any new methods to use.
 
 
 =end
