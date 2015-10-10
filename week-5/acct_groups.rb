@@ -9,12 +9,12 @@ This is a creative challenge and you can make it as easy or difficult as you wou
 RELEASE 1: PSEUDOCODE
 -------------------------------------
 
- INPUT: An array (copperheads) with 55 members of the Copperhead Cohort
-OUTPUT: A hashmap (acctgrp) made up of group #s (keys) and group members (values in an array)
+ INPUT: An array (cops) with 55 members of the Copperhead Cohort
+OUTPUT: A hashmap (groups) made up of group #s (keys) and group members (values in an array)
         Each group should be no smaller than 3 and no larger than 5 (4 or 5 is ideal)
 
-1. CREATE METHOD that accepts the initial array (copperheads) as an argument
-2. CREATE an empty hashmap (mapper) in which keys (names) will be assigned to values (grp_num)
+1. CREATE METHOD (randomize) that accepts the initial array (cops) as an argument
+2. CREATE an empty hashmap (groups) in which keys (names) will be assigned values (grp_num)
 3.    POPULATE keys with all names in sequence and default value of 0 (grp_num = 0)
 4. CREATE an empty group counter/array called (grp_idx)
 5.  FOR (i) in 0..# of Copperheads
@@ -24,15 +24,15 @@ OUTPUT: A hashmap (acctgrp) made up of group #s (keys) and group members (values
 9.        LOOP back to regenerate new random value
 10.     IF NOT (ELSE)
 11.       INCREMENT the number of members in that group (grp_idx/array)
-12.       ASSIGN member name (key) to grp_num (value) in hashmap (mapper)
+12.       ASSIGN member name (key) to grp_num (value) in hashmap (groups)
 13. REPEAT
-14. CREATE METHOD for printing to screen that accepts (mapper) as an argument
+14. CREATE METHOD for printing to screen that accepts (groups) as an argument
 15. OUTPUT to screen a list of copperheads (names) and groups (grp_num)
 16. OUTPUT to screen a list sorted by group number (grp_num)
 17.
-18. CREATE METHOD to Preserve last 3 lists hashmaps (TBD)
+18. OPTIONAL -- CREATE METHOD to Preserve last 3 lists hashmaps (TBD)
 
-=end
+
 
 # -------------------------------------
 # RELEASE 2: INITIAL SOLUTION
@@ -156,12 +156,10 @@ end
 def stop   ### END PROGRAM
 end
 
-
 establish(4)               ### START PROGRAM WITH TYPICAL GROUP SIZE OF 4
-# change_size(0,0,0,0)     ### START PROGRAM WITH USER SELECTION OF GROUP SIZE
 
 
-=begin
+
 -------------------------------------
 RELEASE 3: ADD COMPLEXITY (OPTIONAL)
 -------------------------------------
@@ -170,11 +168,19 @@ If you want to take your solution a step further, consider these questions and m
 
   - If you run this program three times in a row, will the program give you three different outputs?
 
+    YES. This program provides different output each time it's run or whenever the ideal group size is changed.
+
   - Should the program store past outputs?
+
+    NO. This program should not store past outputs because we haven't learned how to access the file system in Ruby yet, and recalling another output from the sames session has an extremely limited use case.
 
   - If one person were to leave the cohort, how would the accountability groups change?
 
+    The only way to modify our cohort in this program is by editing the array in which names are stored (cops). The array can be any size down to just 4 names because 4 is the default group size. By the way, if you remove lines 203-205 and 207, the program will allow you to select ANY groups size too.
+
   - How do you decide when you're done? You'll need to decide. This is much more challenging than you probably think, especially since there are no pre-written tests.
+
+    I've decided I'm done because I've written a fully functional program that includes all intended features and doesn't throw any errors. One feature that I would like to add at some point is the ability to print.
 
 =end
 
@@ -182,11 +188,147 @@ If you want to take your solution a step further, consider these questions and m
 # RELEASE 4: REFACTOR YOUR SOLUTION
 # -------------------------------------
 
+## PLSNOTE THIS PROGRAM CAN BE STARTED WITH ANY ONE OF THESE FOUR METHOD CALLS
+## METHOD1 (establish_cohort) ON 211 ACCEPTS A TYPICAL GROUP SIZE AND CREATES AN ARRAY OF COPPERHEADS
+## METHOD2 (change_group_size) ON 198 ACCEPTS 3 ZEROS & STARTS BY ASKING USER FOR AN IDEAL GROUP SIZE
+## METHOD3 (randomize) ON 219 ACCEPTS AN ARRAY CONTAINING ALL COHORT NAMES, AND AN IDEAL GROUP SIZE
+## METHOD4 (show_all_groups) ON 249 ACCEPTS A GROUP MEMBER HASH & 4 ZEROS TO START WITH OTHER GROUPS
+
+
+# TAKE USER INPUT FOR IDEAL GROUP SIZE : ENTERING GROUP SIZE ALSO PRODUCES A NEW LIST OF GROUPS
+def change_group_size(groups, rand_cops, num_grps)
+  puts
+  print "  Enter ideal group size (3-5): "
+  grp_size = Integer(gets) rescue change_group_size(groups, rand_cops, num_grps)
+  if grp_size <3 || grp_size >5
+    change_group_size(groups, rand_cops, num_grps)
+  else
+    return establish_cohort(grp_size)
+  end
+end
+
+
+# FEEL FREE TO EDIT, ADD, OR REMOVE ANY OF THESE NAMES
+def establish_cohort(grp_size)
+  cops = ["Joshua Abrams", "Syema Ailia", "Kris Bies", "Alexander Blair", "Andrew Blum", "Jacob Boer", "Steven Broderick", "Ovi Calvo", "Danielle Cameron", "Eran Chazan", "Jonathan Chen", "Un Choi", "Kevin Corso", "Eric Dell'Aringa", "Eunice Do", "Ronny Ewanek", "John Paul Chaufan Field", "Eric Freeburg", "Jefferey George", "Jamar Gibbs", "Paul Gaston Gouron", "Gabrielle Gustilo", "Marie-France Han", "Noah Heinrich", "Jack Huang", "Max Iniguez", "Mark Janzer", "Michael Jasinski", "Lars Johnson", "Joshua Kim", "James Kirkpatrick", "Christopher Lee", "Isaac Lee", "Joseph Marion", "Kevin Mark", "Bernadette Masciocchi", "Bryan Munroe", "Becca Nelson", "Van Phan", "John Polhill", "Jeremy Powell", "Jessie Richardson", "David Roberts", "Armani Saldana", "Chris Savage", "Parminder Singh", "Kyle Smith", "Aaron Tsai", "Douglas Tsui", "Deanna Warren", "Peter Wiebe", "Daniel Woznicki", "Jay Yee", "Nicole Yee", "Bruno Zatta"]
+  return randomize(cops, grp_size)
+end
+
+
+# NON DESTRUCTIVELY RANDOMIZE THE ARRAY OF COPPERHEADS
+def randomize(cops, grp_size)
+  rand_cops = Array.new
+  num_cops = cops.length
+  num_grps = num_cops / grp_size
+  delta = num_cops-(num_grps*grp_size)
+  if delta !=0 then extra_grp = num_grps + 1
+  else extra_grp = num_grps
+  end
+  while cops.length > 0
+    rnd = rand(cops.length)
+    rand_cops << cops[rnd]
+    cops.delete_at(rnd)
+  end
+  return grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
+end
+
+
+# CREATE A NEW HASHMAP CONTAINING ALL GROUP MEMBERS (as Value)
+def grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
+  x = 0
+  groups = Hash.new
+  for i in 1..num_grps
+    groups[i] = rand_cops[x..x+grp_size-1]
+    x += grp_size
+  end
+  groups[i+1] = rand_cops[num_cops-delta..num_cops-1]
+  return show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+end
+
+
+# DISPLAY THE COMPLETE LIST OF ALL GROUPS
+def show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+  puts
+  for i in 1..extra_grp
+    puts "  _______________________"
+    puts "  ACCOUNTABILITY GROUP #{i}"
+    puts "  => #{groups[i].join(", ")}"
+    puts
+  end
+  return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+end
+
+
+# DISPLAY ANY INDIVIDUALLY REQUESTED GROUP
+def show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+  puts
+  print "  Enter a current group number (1-#{extra_grp}): "
+  inquiry = Integer(gets) rescue show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+  if inquiry.to_i <= extra_grp
+    puts
+    puts "  _______________________"
+    puts "  ACCOUNTABILITY GROUP #{inquiry}"
+    puts "   #{groups[inquiry.to_i].join(", ")}"
+    return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+  else
+    return show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+  end
+end
+
+
+# USER CHOOSES 1 OF 4 ACTIONS: DISPLAY ALL GROUPS, DISPLAY 1 GROUP, CHANGE GROUP SIZE, OR QUIT
+def ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+  if rand_cops.length % grp_size != 0
+    temp_num_grps = num_grps + 1
+  else
+    temp_num_grps = num_grps
+  end
+  inquiry = 0
+  puts
+  puts "  S - Show current listing of all groups"
+  puts "  D - Display single group"
+  puts "  C - Change ideal group size"
+  print "  Q - Quit "
+  action = gets.chomp.downcase
+  case action
+    when action = "s"
+      return show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+    when action = "d"
+      return show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+    when action = "c"
+      return change_group_size(groups, rand_cops, num_grps)
+    when action = "q"
+      return stop
+  end
+  return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+end
+
+# END PROGRAM
+def stop
+  exit!
+end
+
+
+# START PROGRAM WITH A TYPICAL GROUP SIZE OF 4
+establish_cohort(4)
 
 
 # -------------------------------------
 # RELEASE 5: WRITE DRIVER TEST CODE
 # -------------------------------------
+
+
+## TEST METHOD ON LINE 211 ACCEPTS INTEGER TO START WITH IDEAL GROUP SIZE
+# establish_cohort(4)
+
+## TEST METHOD ON LINE 249 ACCEPTS HASH CONTAINING ALL GROUPS TO START WITH DIFFERENT GROUPS
+# show_all_groups({1 => ["Al","Jim","Jane","Sue"]}, ["Al","Jane", "Sue", "Jim"], 1,4,1)
+
+## TEST METHOD ON LINE 218 ACCEPTS ARRAY CONTAINING ALL COHORT NAMES, AND IDEAL GROUP SIZE
+# randomize(["Lars","Jim","Jane","Sue"], 4)
+
+## TEST METHOD ON LINE 198 ACCEPTS 3 ZEROS TO START BY ASKING USER FOR AN IDEAL GROUP SIZE
+# change_group_size(0,0,0)
 
 
 =begin
@@ -196,12 +338,24 @@ RELEASE 6: REFLECT
 
 1. What was the most interesting and most difficult part of this challenge?
 
+    I had trouble with the logic of creating random groups of selectable size. I thought I had broken the problem down into pseudocode that would translate easily into code, but the approach in my pseudocode turned out to be convoluted and ineffective so I had to create new logic for this program.
+
+
 2. Do you feel you are improving in your ability to write pseudocode and break the problem down?
+
+    I do feel that I'm improving my abilty to write pseudocode and break problems down. It's hard to tell from my pseudocode here because I ended up using different logic, but I am definitely feeling more comfortable. I am also now working offine with pen and paper to break everything down. When I had to create new logic for this challenge I drew flow charts with inputs/outputs, and wrote shorthand pseudocode to figure things out.
 
 3. Was your approach for automating this task a good solution? What could have made it even better?
 
+    My intial approach was not a good one, but I ended up with an approach that I believe is very solid. My program randomizes the initial list of copperheads, populates each group in sequence and simultaineously puts each group into a hash value. That ended up being a much more direct and practical approach. Now that I know more about classes, instance methods and instance variables, I think re-architecting with that approach would make things more efficient and even easier to read. I would also like to take another look at storing names/group#s as key value pairs.
+
 4. What data structure did you decide to store the accountability groups in and why?
 
+    I decided to store the accountability groups in a hash because they are very easy to access. I also felt using a hash would give me the most flexibility in terms of adding features.
+
+
 5. What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
+
+    I learned how to use Integer() to validate that an object is an integer, and I used rescue for error handling in the same user interaction. I tried using some other methods but eventually wound up not making very many changes to my code other than cleaning it up, adding comments and improving the user interface. (A lot of my code is devoted to interaction with the user).
 
 =end
