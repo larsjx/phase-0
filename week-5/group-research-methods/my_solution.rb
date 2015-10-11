@@ -198,8 +198,6 @@ PERSON 4: IDENTIFY AND DESCRIBE THE RUBY METHOD(S) YOU USED
 
 PERSON 4: TEACH YOUR ACCOUNTABILITY GROUP HOW TO USE THE METHODS
 
-  I'm posting this for Ovi Calvo since he doesn't have access to this page yet (it's his work):
-
   The first method I devised was a destructive one called 'my_array_deletion_method!'. This method works by changing the 'source' (the array which is taken as an argument). Using the '.each' method to iterate through the source array, to scan the various 'items' (in the parallel line "pipes") to check if the 'items' includes (using the '.include?' method) the thing we are wishing to delete. In this case the 'thing_to_delete' is a letter string taken as an argument in this method. If the 'items' in the array have the letter we are trying to get rid of, I called the '.delete' method to nix it from the array. The method, being destructive has a bash (!), so the array object is now permanently revised.
 
   The second method I made was the destructive 'my_hash_deletion_method!'; this likewise was very similar to the logic of deleting an item permanently from an array using a bash (!), only this time the source we are examining is a hash, with respective key-value pairs. Once again using the '.each' method to iterate through the source hash, we evaluate the |key, value| of that hash to check if the 'thing_to_delete' paramater equates to a key in our hash. If there is a match and the key we wish to delete is found, the '.delete' method is performed to take it out of the source hash permanently.
