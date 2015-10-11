@@ -16,6 +16,39 @@ my_family_pets_ages = {"Evi" => 6, "Ditto" => 3, "Hoobie" => 3, "George" => 12, 
 #########################################################
 ### PERSON 1: LARS JOHNSON
 #########################################################
+=begin
+
+
+### PERSON 1: PSEUDOCODE
+
+ARRAY FINDING SOLUTION PSEUDOCODE
+
+   INPUT: An array of strings, plus a single letter
+  OUTPUT: A new array of all the strings which contain that letter
+  ----------------------------------------------------------------
+  DEFINE a method that receives an array of strings, and a single letter
+  CREATE a new, empty array
+  ITERATE over each element of the received array
+    CONVERT everything in the received array to lowercase
+    DETERMINE if each converted string contains the single letter received as input
+    ADD each string that contains the received letter to a new array
+  OUTPUT the new array
+
+
+HASH FINDING SOLUTION PSEUDOCOE
+
+   INPUT: A hash of pet names (keys) and their ages (values), plus a positive integer
+  OUTPUT: A new hash of pet names (keys) at that age (values)
+  ----------------------------------------------------------------
+  DEFINE a method that receives a hash containing pet names (keys) and their ages (values), and a positive integer
+  CREATE a new, empty hash
+  ITERATE over each key/value pair in the received hash
+    COMPARE pets ages (value) with the received positive integer
+    DETERMINE if the age of each pet matches the positive integer received as input
+    ADD each key/value pair that matches the received value to the new hash
+  OUTPUT the new hash
+
+=end
 
 ### PERSON 1: ARRAY FINDING SOLUTIONS
 
