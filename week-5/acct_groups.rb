@@ -33,7 +33,6 @@ OUTPUT: A hashmap (groups) made up of group #s (keys) and group members (values 
 18. OPTIONAL -- CREATE METHOD to Preserve last 3 lists hashmaps (TBD)
 
 
-
 # -------------------------------------
 # RELEASE 2: INITIAL SOLUTION
 # -------------------------------------
@@ -153,28 +152,27 @@ end
 establish(4)               ### START PROGRAM WITH TYPICAL GROUP SIZE OF 4
 
 
-
 -------------------------------------
 RELEASE 3: ADD COMPLEXITY (OPTIONAL)
 -------------------------------------
 
 If you want to take your solution a step further, consider these questions and make changes to your solution based on your decisions:
 
-  - If you run this program three times in a row, will the program give you three different outputs?
+  If you run this program three times in a row, will the program give you three different outputs?
 
     YES. This program provides different output each time it's run or whenever the ideal group size is changed.
 
-  - Should the program store past outputs?
+  Should the program store past outputs?
 
-    NO. This program should not store past outputs because we haven't learned how to access the file system in Ruby yet, and recalling another output from the sames session has an extremely limited use case.
+    YES, but only for fun. Normally this program would not store past outputs because we haven't learned how to access the file system in Ruby yet, and recalling another output from the sames session has an extremely limited use case. However, I know how to do this and would like to add it when I have time.
 
-  - If one person were to leave the cohort, how would the accountability groups change?
+  If one person were to leave the cohort, how would the accountability groups change?
 
-    The only way to modify our cohort in this program is by editing the array in which names are stored (cops). The array can be any size down to just 4 names because 4 is the default group size. By the way, if you remove lines 203-205 and 207, the program will allow you to select ANY groups size too.
+    The only way to modify our cohort in this program is by editing the array in which names are stored (cops). The array can be any size down to just 4 names because 4 is the default group size. By the way, if you remove lines 194-196 and 198, the program will allow you to select ANY groups size too.
 
-  - How do you decide when you're done? You'll need to decide. This is much more challenging than you probably think, especially since there are no pre-written tests.
+  How do you decide when you're done? You'll need to decide. This is much more challenging than you probably think, especially since there are no pre-written tests.
 
-    I've decided I'm done because I've written a fully functional program that includes all intended features and doesn't throw any errors. One feature that I would like to add at some point is the ability to print.
+    I've decided I'm done because I've written a fully functional program that includes all of my initially intended features and doesn't throw any errors. Two feature that I would like to add at some point are the ability to print and recall past group sets.
 
 =end
 
@@ -182,20 +180,21 @@ If you want to take your solution a step further, consider these questions and m
 # RELEASE 4: REFACTOR YOUR SOLUTION
 # -------------------------------------
 
-## PLSNOTE THIS PROGRAM CAN BE STARTED WITH ANY ONE OF THESE FOUR METHOD CALLS
-## METHOD1 (establish_cohort) ON 211 ACCEPTS A TYPICAL GROUP SIZE AND CREATES AN ARRAY OF COPPERHEADS
-## METHOD2 (change_group_size) ON 198 ACCEPTS 3 ZEROS & STARTS BY ASKING USER FOR AN IDEAL GROUP SIZE
-## METHOD3 (randomize) ON 219 ACCEPTS AN ARRAY CONTAINING ALL COHORT NAMES, AND AN IDEAL GROUP SIZE
-## METHOD4 (show_all_groups) ON 249 ACCEPTS A GROUP MEMBER HASH & 4 ZEROS TO START WITH OTHER GROUPS
-
+## PLS NOTE THIS PROGRAM CAN BE RUN WITH ANY ONE OF THE FOLLOWING METHOD CALLS
+##          IT CAN ALSO BE RUN IN ABOUT 12 LINES WITHOUT THE USER INTERFACE
+##
+## METHOD1 (establish_cohort) ON 204 ACCEPTS A TYPICAL GROUP SIZE AND CREATES AN ARRAY OF COPPERHEADS
+## METHOD2 (change_group_size) ON 192 ACCEPTS 2 ZEROS & STARTS BY ASKING USER FOR AN IDEAL GROUP SIZE
+## METHOD3 (randomize) ON 209 ACCEPTS AN ARRAY OF ALL NAMES IN THE COHORT PLUS AN IDEAL GROUP SIZE
+## METHOD4 (show_all_groups) ON 217 ACCEPTS AN ARRAY OF GROUPS TO START WITH DIFFERENT GROUPS
 
 # TAKE USER INPUT FOR IDEAL GROUP SIZE : ENTERING GROUP SIZE ALSO PRODUCES A NEW LIST OF GROUPS
-def change_group_size(groups, rand_cops, num_grps)
+def change_group_size(groups, num_grps)
   puts
   print "  Enter ideal group size (3-5): "
-  grp_size = Integer(gets) rescue change_group_size(groups, rand_cops, num_grps)
+  grp_size = Integer(gets) rescue change_group_size(groups, num_grps)
   if grp_size <3 || grp_size >5
-    change_group_size(groups, rand_cops, num_grps)
+    change_group_size(groups, num_grps)
   else
     return establish_cohort(grp_size)
   end
@@ -207,71 +206,43 @@ def establish_cohort(grp_size)
   return randomize(cops, grp_size)
 end
 
-# NON DESTRUCTIVELY RANDOMIZE THE ARRAY OF COPPERHEADS
 def randomize(cops, grp_size)
-  rand_cops = Array.new
-  num_cops = cops.length
-  num_grps = num_cops / grp_size
-  delta = num_cops-(num_grps*grp_size)
-  if delta !=0 then extra_grp = num_grps + 1
-  else extra_grp = num_grps
-  end
-  while cops.length > 0
-    rnd = rand(cops.length)
-    rand_cops << cops[rnd]
-    cops.delete_at(rnd)
-  end
-  return grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
-end
-
-# CREATE A NEW HASHMAP CONTAINING ALL GROUP MEMBERS (as Value)
-def grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
-  x = 0
-  groups = Hash.new
-  for i in 1..num_grps
-    groups[i] = rand_cops[x..x+grp_size-1]
-    x += grp_size
-  end
-  groups[i+1] = rand_cops[num_cops-delta..num_cops-1]
-  return show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+  groups = Array.new
+  groups = cops.shuffle.each_slice(grp_size).to_a
+  num_grps = groups.length
+  return show_all_groups(groups, num_grps, grp_size)
 end
 
 # DISPLAY THE COMPLETE LIST OF ALL GROUPS
-def show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+def show_all_groups(groups, num_grps, grp_size)
   puts
-  for i in 1..extra_grp
+  for i in 0...num_grps
     puts "  _______________________"
-    puts "  ACCOUNTABILITY GROUP #{i}"
+    puts "  ACCOUNTABILITY GROUP #{i+1}"
     puts "  => #{groups[i].join(", ")}"
     puts
   end
-  return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+  return ui(groups, num_grps, grp_size)
 end
 
 # DISPLAY ANY INDIVIDUALLY REQUESTED GROUP
-def show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+def show_one_group(groups, num_grps, grp_size)
   puts
-  print "  Enter a current group number (1-#{extra_grp}): "
-  inquiry = Integer(gets) rescue show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
-  if inquiry.to_i <= extra_grp
+  print "  Enter a current group number (1-#{num_grps}): "
+  inquiry = Integer(gets) rescue show_one_group(groups, num_grps, grp_size)
+  if inquiry <= num_grps && inquiry != 0
     puts
     puts "  _______________________"
     puts "  ACCOUNTABILITY GROUP #{inquiry}"
-    puts "   #{groups[inquiry.to_i].join(", ")}"
-    return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+    puts "   #{groups[inquiry-1.to_i].join(", ")}"
+    return ui(groups, num_grps, grp_size)
   else
-    return show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+    return show_one_group(groups, num_grps, grp_size)
   end
 end
 
-# USER CHOOSES 1 OF 4 ACTIONS: DISPLAY ALL GROUPS, DISPLAY 1 GROUP, CHANGE GROUP SIZE, OR QUIT
-def ui(groups, rand_cops, num_grps, grp_size, extra_grp)
-  if rand_cops.length % grp_size != 0
-    temp_num_grps = num_grps + 1
-  else
-    temp_num_grps = num_grps
-  end
-  inquiry = 0
+# USER CHOOSES 1 OF 4 ACTIONS: SHOW ALL GROUPS, DISPLAY 1 GROUP, CHANGE GROUP SIZE, OR QUIT
+def ui(groups, num_grps, grp_size)
   puts
   puts "  S - Show current listing of all groups"
   puts "  D - Display single group"
@@ -280,22 +251,21 @@ def ui(groups, rand_cops, num_grps, grp_size, extra_grp)
   action = gets.chomp.downcase
   case action
     when action = "s"
-      return show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
+      return show_all_groups(groups, num_grps, grp_size)
     when action = "d"
-      return show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
+      return show_one_group(groups, num_grps, grp_size)
     when action = "c"
-      return change_group_size(groups, rand_cops, num_grps)
+      return change_group_size(groups, num_grps)
     when action = "q"
       return stop
   end
-  return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
+  return ui(groups, num_grps, grp_size)
 end
 
 # END PROGRAM
 def stop
   exit!
 end
-
 
 # START PROGRAM WITH A TYPICAL GROUP SIZE OF 4
 establish_cohort(4)
@@ -306,17 +276,17 @@ establish_cohort(4)
 # -------------------------------------
 
 
-## TEST METHOD ON LINE 211 ACCEPTS INTEGER TO START WITH IDEAL GROUP SIZE
+## TEST METHOD ON LINE 204 ACCEPTS AN INTEGER TO START WITH IDEAL GROUP SIZE
 # establish_cohort(4)
 
-## TEST METHOD ON LINE 249 ACCEPTS HASH CONTAINING ALL GROUPS TO START WITH DIFFERENT GROUPS
-# show_all_groups({1 => ["Al","Jim","Jane","Sue"]}, ["Al","Jane", "Sue", "Jim"], 1,4,1)
+## TEST METHOD ON LINE 217 ACCEPTS AN ARRAY CONTAINING ALL GROUPS TO START WITH DIFFERENT GROUPS
+# show_all_groups([["Jill","Jim","Jane","Jackie"]],1,4)
 
-## TEST METHOD ON LINE 218 ACCEPTS ARRAY CONTAINING ALL COHORT NAMES, AND IDEAL GROUP SIZE
-# randomize(["Lars","Jim","Jane","Sue"], 4)
+## TEST METHOD ON LINE 209 ACCEPTS ARRAY CONTAINING ALL COHORT NAMES, AND IDEAL GROUP SIZE
+# randomize(["Sarah","Stan","Sally","Sue"], 4)
 
-## TEST METHOD ON LINE 198 ACCEPTS 3 ZEROS TO START BY ASKING USER FOR AN IDEAL GROUP SIZE
-# change_group_size(0,0,0)
+## TEST METHOD ON LINE 192 ACCEPTS 2 ZEROS TO START BY ASKING THE USER FOR AN IDEAL GROUP SIZE
+# change_group_size(0,0)
 
 
 =begin
@@ -326,36 +296,31 @@ RELEASE 6: REFLECT
 
 1. What was the most interesting and most difficult part of this challenge?
 
-    I had trouble with the logic of creating random groups of a selectable size and properly handling the remainder. I thought I had broken the problem down into pseudocode that would translate easily into code, but the approach in my pseudocode turned out to be convoluted and ineffective so I had to create new logic for this program. Next time that happens, I'm going to re-write my pseudocode too.
+    I had trouble with the logic of creating random groups of a selectable size and properly handling the remainder. I thought I had broken the problem down into pseudocode that would translate easily into code, but the approach in my pseudocode turned out to be convoluted and ineffective so I had to create new logic. Next time that happens, I'm going to re-write my pseudocode too.
 
 
 2. Do you feel you are improving in your ability to write pseudocode and break the problem down?
 
-    I do feel that I'm improving my abilty to write pseudocode and break problems down. It's hard to tell from my pseudocode here because I ended up using different logic, but I am definitely feeling more comfortable. I am also now working offine with pen and paper to break everything down. When I had to create new logic for this challenge I drew flow charts with inputs/outputs, and wrote some shorthand pseudocode to figure things out. The current logic in program randomizes the initial list of copperheads, populates each group in sequence and simultaineously puts each group into a hash value. That ended up being a much more practical than what I originally had in pseudocode.
+    I do feel that I'm improving my abilty to write pseudocode and break problems down. It's hard to tell from my pseudocode here because I ended up using different logic, but I am definitely feeling more comfortable. I am also now working offine with pen and paper to break everything down. When I had to create new logic for this challenge I drew flow charts with inputs/outputs, and wrote some shorthand pseudocode to figure things out. My initial solution randomizes the copperheads, populates each group in sequence and simultaineously puts each group into a hash value. That ended up being much more practical than what I originally had in pseudocode. Fortunately, I was able to improve on that too.
 
 
 3. Was your approach for automating this task a good solution? What could have made it even better?
 
-    My intial approach was fundamentally flawed, but I ended up with an approach that I believe is solid. I'm sure there are better methods to replace my core logic, but in reality my user interface makes up over 70% of the code. Now that I know a little about classes, instance methods and instance variables, I think re-architecting with that approach might make things more efficient and even easier to read. I would also like to add a method for storing and retreiving old group lists.
-
-    **EDIT 10/11/15: After seeing #shuffle and Enumerable#each_slice on this week's quiz, I realized that I could rebuild my core logic into just 3 lines, down from 16, and I have done so in the file listed below (re-build.rb). I'm not sure I can get credit for this since I got the idea from our quiz, but I wanted to log that I have learned how to write this program much more economically and I've had a lot of fun working on this challenge.
-
-      https://github.com/larsjx/phase-0/blob/master/week-5/re-build.rb
+    My pseudocode was flawed, but I ended up with an initial and refactored approach that I believe is solid. I am guessing there are still better methods to replace my core logic, but in reality my user interface makes up over 70% of the code. Now that I know a little about classes, instance methods and instance variables, I think re-coding with that approach could make things more efficient and even easier to read. I would also like to add a method for storing and retreiving old group lists.
 
 
 4. What data structure did you decide to store the accountability groups in and why?
 
-    I decided to store the accountability groups in a hash because they are very easy to access. I also felt using a hash would give me the most flexibility in terms of adding features.
+    I initially decided to store the accountability groups in a hash because they are very easy to access. I also felt using a hash would give me more flexibility in terms of adding features. However, in hindsight I was wrong.
 
-    **EDIT 10/12/15: I was wrong. Based on my final refactoring in re-build.rb (above), I have realized that an array in which each group is an element makes at least as much sense as using a hash. It also dawned on me that it would be easy to add a storage and retrieval method into re-build.rb by storing the entire shuffle and sliced list as an element in a separate array versus what I tried doing originally which was to store and retrieve each group individually. If you have time, please have a look at re-build.rb and run it. It's pretty fun!
-
-      https://github.com/larsjx/phase-0/blob/master/week-5/re-build.rb
+    During my final refactoring, I realized that an array in which each group is an element makes at least as much sense as using a hash. It also dawned on me that this makes it easy to add a storage and retrieval method by storing the entire shuffle and sliced list as an element in a separate array versus what I tried doing originally which was to store and retrieve each group individually.
 
 
 5. What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
 
-    I learned how to use Integer() to validate that an object is an integer, and I used rescue for error handling in the same user interaction. I tried using some other methods but eventually wound up not making very many changes to my code other than cleaning it up, adding comments and improving the user interface. (A lot of my code is devoted to interaction with the user).
+    After this week's quiz, I realized that I could refactor with #shuffle which returns a new array of randomized elements, and Enumerable#each_slice which iterates over a given block and returns an array of the specified number of elements. Awesome!
 
-    **EDIT 10/12/15: After taking this week's quiz, I realized that I could refactor with #shuffle which returns a new array of randomized elements, and Enumerable#each_slice which iterates over a given block and returns an array of the specified number of elements. Awesome!
+    I also learned how to use Integer() to validate that an object is an integer, and I used rescue for error handling in the same user interaction.
+
 
 =end
