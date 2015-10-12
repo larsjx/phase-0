@@ -338,24 +338,36 @@ RELEASE 6: REFLECT
 
 1. What was the most interesting and most difficult part of this challenge?
 
-    I had trouble with the logic of creating random groups of selectable size. I thought I had broken the problem down into pseudocode that would translate easily into code, but the approach in my pseudocode turned out to be convoluted and ineffective so I had to create new logic for this program.
+    I had trouble with the logic of creating random groups of a selectable size and properly handling the remainder. I thought I had broken the problem down into pseudocode that would translate easily into code, but the approach in my pseudocode turned out to be convoluted and ineffective so I had to create new logic for this program. Next time that happens, I'm going to re-write my pseudocode too.
 
 
 2. Do you feel you are improving in your ability to write pseudocode and break the problem down?
 
-    I do feel that I'm improving my abilty to write pseudocode and break problems down. It's hard to tell from my pseudocode here because I ended up using different logic, but I am definitely feeling more comfortable. I am also now working offine with pen and paper to break everything down. When I had to create new logic for this challenge I drew flow charts with inputs/outputs, and wrote shorthand pseudocode to figure things out.
+    I do feel that I'm improving my abilty to write pseudocode and break problems down. It's hard to tell from my pseudocode here because I ended up using different logic, but I am definitely feeling more comfortable. I am also now working offine with pen and paper to break everything down. When I had to create new logic for this challenge I drew flow charts with inputs/outputs, and wrote some shorthand pseudocode to figure things out. The current logic in program randomizes the initial list of copperheads, populates each group in sequence and simultaineously puts each group into a hash value. That ended up being a much more practical than what I originally had in pseudocode.
+
 
 3. Was your approach for automating this task a good solution? What could have made it even better?
 
-    My intial approach was not a good one, but I ended up with an approach that I believe is very solid. My program randomizes the initial list of copperheads, populates each group in sequence and simultaineously puts each group into a hash value. That ended up being a much more direct and practical approach. Now that I know more about classes, instance methods and instance variables, I think re-architecting with that approach would make things more efficient and even easier to read. I would also like to take another look at storing names/group#s as key value pairs.
+    My intial approach was fundamentally flawed, but I ended up with an approach that I believe is solid. I'm sure there are better methods to replace my core logic, but in reality my user interface makes up over 70% of the code. Now that I know a little about classes, instance methods and instance variables, I think re-architecting with that approach might make things more efficient and even easier to read. I would also like to add a method for storing and retreiving old group lists.
+
+    **EDIT 10/11/15: After seeing #shuffle and Enumerable#each_slice on this week's quiz, I realized that I could rebuild my core logic into just 3 lines, down from 16, and I have done so in the file listed below (re-build.rb). I'm not sure I can get credit for this since I got the idea from our quiz, but I wanted to log that I have learned how to write this program much more economically and I've had a lot of fun working on this challenge.
+
+      https://github.com/larsjx/phase-0/blob/master/week-5/re-build.rb
+
 
 4. What data structure did you decide to store the accountability groups in and why?
 
     I decided to store the accountability groups in a hash because they are very easy to access. I also felt using a hash would give me the most flexibility in terms of adding features.
 
+    **EDIT 10/12/15: I was wrong. Based on my final refactoring in re-build.rb (above), I have realized that an array in which each group is an element makes at least as much sense as using a hash. It also dawned on me that it would be easy to add a storage and retrieval method into re-build.rb by storing the entire shuffle and sliced list as an element in a separate array versus what I tried doing originally which was to store and retrieve each group individually. If you have time, please have a look at re-build.rb and run it. It's pretty fun!
+
+      https://github.com/larsjx/phase-0/blob/master/week-5/re-build.rb
+
 
 5. What did you learn in the process of refactoring your initial solution? Did you learn any new Ruby methods?
 
     I learned how to use Integer() to validate that an object is an integer, and I used rescue for error handling in the same user interaction. I tried using some other methods but eventually wound up not making very many changes to my code other than cleaning it up, adding comments and improving the user interface. (A lot of my code is devoted to interaction with the user).
+
+    **EDIT 10/12/15: After taking this week's quiz, I realized that I could refactor with #shuffle which returns a new array of randomized elements, and Enumerable#each_slice which iterates over a given block and returns an array of the specified number of elements. Awesome!
 
 =end
