@@ -51,7 +51,6 @@ def change_size(groups, rand_cops, num_grps, grp_size)  # ACCEPT USER INPUT TO C
   return stop
 end
 
-
 def establish(grp_size)
   cops = ["Joshua Abrams", "Syema Ailia", "Kris Bies", "Alexander Blair", "Andrew Blum", "Jacob Boer", "Steven Broderick", "Ovi Calvo", "Danielle Cameron", "Eran Chazan", "Jonathan Chen", "Un Choi", "Kevin Corso", "Eric Dell'Aringa", "Eunice Do", "Ronny Ewanek", "John Paul Chaufan Field", "Eric Freeburg", "Jefferey George", "Jamar Gibbs", "Paul Gaston Gouron", "Gabrielle Gustilo", "Marie-France Han", "Noah Heinrich", "Jack Huang", "Max Iniguez", "Mark Janzer", "Michael Jasinski", "Lars Johnson", "Joshua Kim", "James Kirkpatrick", "Christopher Lee", "Isaac Lee", "Joseph Marion", "Kevin Mark", "Bernadette Masciocchi", "Bryan Munroe", "Becca Nelson", "Van Phan", "John Polhill", "Jeremy Powell", "Jessie Richardson", "David Roberts", "Armani Saldana", "Chris Savage", "Parminder Singh", "Kyle Smith", "Aaron Tsai", "Douglas Tsui", "Deanna Warren", "Peter Wiebe", "Daniel Woznicki", "Jay Yee", "Nicole Yee", "Bruno Zatta"]
   groups = Hash.new
@@ -61,7 +60,6 @@ def establish(grp_size)
   delta = num_cops-(num_grps*grp_size)
   return rndmize(cops, num_cops, rand_cops, grp_size, num_grps, delta)
 end
-
 
 def rndmize(cops, num_cops, rand_cops, grp_size, num_grps, delta)   # NON-DESTRUCTIVELY RANDOMIZE ARRAY OF COPPERHEADS
   i = 0
@@ -76,7 +74,6 @@ def rndmize(cops, num_cops, rand_cops, grp_size, num_grps, delta)   # NON-DESTRU
   return grouper(rand_cops, num_cops, grp_size, num_grps, delta)
 end
 
-
 def grouper(rand_cops, num_cops, grp_size, num_grps, delta)    # CREATE HASHMAP OF ALL GROUPS FROM RANDOMIZED ARRAY
   x = 0
   groups = Hash.new
@@ -87,7 +84,6 @@ def grouper(rand_cops, num_cops, grp_size, num_grps, delta)    # CREATE HASHMAP 
   groups[i+1] = rand_cops[num_cops-delta..num_cops-1]
   return ui(groups, rand_cops, num_grps, grp_size)
 end
-
 
 def ui(groups, rand_cops, num_grps, grp_size)   # CAPTURE USER DECISION TO DISPLAY GROUPS, CHANGE GROUP SIZE OR QUIT
   inquiry = 0
@@ -112,29 +108,27 @@ def ui(groups, rand_cops, num_grps, grp_size)   # CAPTURE USER DECISION TO DISPL
   return ui(groups, rand_cops, num_grps, grp_size)
 end
 
-
 def show_current(groups, rand_cops, num_grps, grp_size)   # DISPLAY COMPLETE LIST OF ALL GROUPS
   puts num_grps
   if rand_cops.length % grp_size != 0
     num_grps_print = num_grps + 1
   else num_grps_print = num_grps
+  end
+  puts
+    for i in 1..num_grps_print
+      puts "  _________________________"
+      puts "  Accountability Group #{i}"
+      puts "   #{groups[i].join(", ")}"
+      puts
     end
-    puts
-      for i in 1..num_grps_print
-        puts "  _________________________"
-        puts "  Accountability Group #{i}"
-        puts "   #{groups[i].join(", ")}"
-        puts
-      end
-      return ui(groups, rand_cops, num_grps, grp_size)
+  return ui(groups, rand_cops, num_grps, grp_size)
 end
-
 
 def show_group(groups, rand_cops, num_grps, grp_size)    # DISPLAY AN INDIVIDUALLY REQUESTED GROUP
   if rand_cops.length % grp_size != 0
-      temp_num_grps = num_grps + 1
-    else
-      temp_num_grps = num_grps
+    temp_num_grps = num_grps + 1
+  else
+    temp_num_grps = num_grps
   end
   puts
   puts "  Enter a current group number (1-#{temp_num_grps}): "
@@ -207,13 +201,11 @@ def change_group_size(groups, rand_cops, num_grps)
   end
 end
 
-
 # FEEL FREE TO EDIT, ADD, OR REMOVE ANY OF THESE NAMES
 def establish_cohort(grp_size)
   cops = ["Joshua Abrams", "Syema Ailia", "Kris Bies", "Alexander Blair", "Andrew Blum", "Jacob Boer", "Steven Broderick", "Ovi Calvo", "Danielle Cameron", "Eran Chazan", "Jonathan Chen", "Un Choi", "Kevin Corso", "Eric Dell'Aringa", "Eunice Do", "Ronny Ewanek", "John Paul Chaufan Field", "Eric Freeburg", "Jefferey George", "Jamar Gibbs", "Paul Gaston Gouron", "Gabrielle Gustilo", "Marie-France Han", "Noah Heinrich", "Jack Huang", "Max Iniguez", "Mark Janzer", "Michael Jasinski", "Lars Johnson", "Joshua Kim", "James Kirkpatrick", "Christopher Lee", "Isaac Lee", "Joseph Marion", "Kevin Mark", "Bernadette Masciocchi", "Bryan Munroe", "Becca Nelson", "Van Phan", "John Polhill", "Jeremy Powell", "Jessie Richardson", "David Roberts", "Armani Saldana", "Chris Savage", "Parminder Singh", "Kyle Smith", "Aaron Tsai", "Douglas Tsui", "Deanna Warren", "Peter Wiebe", "Daniel Woznicki", "Jay Yee", "Nicole Yee", "Bruno Zatta"]
   return randomize(cops, grp_size)
 end
-
 
 # NON DESTRUCTIVELY RANDOMIZE THE ARRAY OF COPPERHEADS
 def randomize(cops, grp_size)
@@ -232,7 +224,6 @@ def randomize(cops, grp_size)
   return grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
 end
 
-
 # CREATE A NEW HASHMAP CONTAINING ALL GROUP MEMBERS (as Value)
 def grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
   x = 0
@@ -245,7 +236,6 @@ def grouper(rand_cops, num_cops, grp_size, num_grps, delta, extra_grp)
   return show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
 end
 
-
 # DISPLAY THE COMPLETE LIST OF ALL GROUPS
 def show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
   puts
@@ -257,7 +247,6 @@ def show_all_groups(groups, rand_cops, num_grps, grp_size, extra_grp)
   end
   return ui(groups, rand_cops, num_grps, grp_size, extra_grp)
 end
-
 
 # DISPLAY ANY INDIVIDUALLY REQUESTED GROUP
 def show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
@@ -274,7 +263,6 @@ def show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
     return show_one_group(groups, rand_cops, num_grps, grp_size, extra_grp)
   end
 end
-
 
 # USER CHOOSES 1 OF 4 ACTIONS: DISPLAY ALL GROUPS, DISPLAY 1 GROUP, CHANGE GROUP SIZE, OR QUIT
 def ui(groups, rand_cops, num_grps, grp_size, extra_grp)
