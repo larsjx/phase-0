@@ -1,43 +1,70 @@
 # Your Names
-# 1)
-# 2)
+# 1) John Paul Chaufan Field
+# 2) Lars Johnson
 
-# We spent [#] hours on this challenge.
+# We spent [4] hours on this challenge.
 
 # Bakery Serving Size portion calculator.
 
-def serving_size_calc(item_to_make, order_quantity)
-  library = {"cookie" => 1, "cake" =>  5, "pie" => 7}
-  error_counter = 3
 
-  library.each do |food|
-    if library[food] != library[item_to_make]
-      p error_counter += -1
-    end
-  end
+# Recieve a baking item and quantity of provided ingredients
+def place_order(item_to_make, provided_ingredients)
 
-  if error_counter > 0
-    raise ArgumentError.new("#{item_to_make} is not a valid input")
-  end
 
-  serving_size = library.values_at(item_to_make)[0]
-  serving_size_mod = order_quantity % serving_size
+# the menu with ingredients needed to make one of each item
+  puts
+  menu = {cookies: 2, cake: 5, pie: 7}
 
-  case serving_size_mod
-  when 0
-    return "Calculations complete: Make #{order_quantity/serving_size} of #{item_to_make}"
+  # alert if the food item to make is not on the menu or if we have insufficient ingredients
+  if !menu[item_to_make]
+    return "#{item_to_make.capitalize} is not on the menu."
+  elsif provided_ingredients < menu[item_to_make]
+    return "We need more ingredients to make that item."
   else
-    return "Calculations complete: Make #{order_quantity/serving_size} of #{item_to_make}, you have #{serving_size_mod} leftover ingredients. Suggested baking items: TODO: MAKE THIS FEATURE"
+
+  # identify ingredients required to make the item, plus any leftover ingredients
+    required_ingredients = menu[item_to_make]
+    leftover_ingredients = provided_ingredients % required_ingredients
+    items_made = provided_ingredients/required_ingredients
+
+  # create message to convey if any there are any leftover ingredients
+    plural = 's' if items_made > 1 && item_to_make != :cookies
+    message = "We've made #{items_made} #{item_to_make}#{plural}. You have #{leftover_ingredients} leftover ingredients."
+
+
+  # calculate and convey how many items can be made, and also leftover ingredients and suggestions for use
+    if leftover_ingredients >= menu[:cake]
+      return "#{message} Have some cake."
+    elsif leftover_ingredients >= menu[:cookies]
+      return "#{message} Have some cookies."
+    elsif leftover_ingredients > 0
+      return "#{message} Not enough to make anything."
+    else
+      return "We've made #{items_made} #{item_to_make}#{plural}."
+    end
   end
 end
 
-p serving_size_calc("pie", 7)
-p serving_size_calc("pie", 8)
-p serving_size_calc("cake", 5)
-p serving_size_calc("cake", 7)
-p serving_size_calc("cookie", 1)
-p serving_size_calc("cookie", 10)
-p serving_size_calc("THIS IS AN ERROR", 5)
+# place orders with item name and number of provided ingredients
+p place_order(:pie, 130 )
+p place_order(:pie, 82)
+p place_order(:cake, 32)
+p place_order(:cake, 7)
+p place_order(:cookies, 1)
+p place_order(:cookies, 10)
+p place_order(:spam, 5)
+
+
+=begin
 
 #  Reflection
 
+1. What did you learn about making code readable by working on this challenge?
+
+2. Did you learn any new methods? What did you learn about them?
+
+3. What did you learn about accessing data in hashes?
+
+4. What concepts were solidified when working through this challenge?
+
+=end
