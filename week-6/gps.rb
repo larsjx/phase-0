@@ -10,7 +10,6 @@
 # Recieve a baking item and quantity of provided ingredients
 def place_order(item_to_make, provided_ingredients)
 
-
 # the menu with ingredients needed to make one of each item
   puts
   menu = {cookies: 2, cake: 5, pie: 7}
@@ -61,10 +60,18 @@ p place_order(:spam, 5)
 
 1. What did you learn about making code readable by working on this challenge?
 
+  I learned that undoing someone else's less-than-ideal code can be pretty tough and that it's definitely worth the effort to make our code readable from the very beginning.
+
 2. Did you learn any new methods? What did you learn about them?
+
+  We didn't use any new methods. That's really an area I need to work on as I'm sure there was at least one good one we could have used.
 
 3. What did you learn about accessing data in hashes?
 
+  We didn't use any new techniques to access the data in our hash this time.
+
 4. What concepts were solidified when working through this challenge?
+
+  The key concept that was solidified for me is the necessity of writing easily understandable code with meaningful variables and really clear comments, especially when working on something that others will be involved in or may inherit some day.
 
 =end
