@@ -94,6 +94,12 @@ Iterate over the 1st level array
 startup_names = ["bit", "quick", ["find", "fast", ["optimize", "scope"]]]
 puts
 
+## NOTE THIS INITIAL SOLUTION IS STILL A WORK IN PROGRESS AS IT IS NOT
+## TOTALLY WORKING YET. THE PLAN IS TO REFACTOR ONCE WE GET IT WORKING.
+## THIS IS THE CURRENT OUTPUT (the last 2 elements are still unchanged)
+##
+## ["bitly", "quickly", ["findly", "fastly", ["optimize", "scope"]]]
+
 array_new = []
 array_new_new = []
 startup_names.collect { |element|
