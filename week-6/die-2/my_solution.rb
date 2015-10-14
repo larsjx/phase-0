@@ -77,7 +77,7 @@ class Die
   attr_reader :sides
 
   def roll
-    sides > 1 ? (p @labels[rand(sides)]) : (p @labels[0])
+    sides > 1 ? (@labels[rand(sides)]) : (@labels[0])
   end
 end
 
@@ -100,13 +100,26 @@ REFLECTION
 1. What were the main differences between this die class and the last one you created
    in terms of implementation? Did you need to change much logic to get this to work?
 
+   The two main differences are the change to label.length as the number of sides and
+   the creation of an @labels instance variable. The only logic I changed was to add
+   an ELSE statement that returns the only lanel (index zero) for a one sided die.
+
 2. What does this exercise teach you about making code that is easily changeable or
    modifiable?
 
+   This exercise reinforces that easily modifiable code is of great value because it
+   can be a huge time saver in the development cycle.
+
 3. What new methods did you learn when working on this challenge, if any?
+
+    I used #attr_reader for the first time in this challenge, but I should have used
+    it last week too.
 
 4. What concepts about classes were you able to solidify in this challenge?
 
-
+    This challenge reinforced that Ruby classes are like a blueprint for making new
+    objects. Classes can have properties which get assigned to variables such as the
+    number of sides and labels in this exercise and their objects can have behaviors,
+    such as the rolling of our die. These behaviors are performed by method calls.
 
 =end
