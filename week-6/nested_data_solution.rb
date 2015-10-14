@@ -128,7 +128,8 @@ RELEASE 5: REFLECT
 1. What are some general rules you can apply to nested arrays?
 
     Nested arrays generally follow the same rules as 1-dimensional arrays. You can
-    iterate over all of the elements in the entire array, or you can access any index individually when you know the structure. If you don't know the structure it is
+    iterate over all of the elements in the entire array, or you can access any index
+    individually when you know the structure. If you don't know the structure it is
     much more difficult to pick out individual elements.
 
 2. What are some ways you can iterate over nested arrays?
