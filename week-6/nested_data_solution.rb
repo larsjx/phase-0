@@ -2,7 +2,6 @@
 
 
 # RELEASE 2: NESTED STRUCTURE GOLF
-# ============================================================
 
 # Hole 1, Target element: "FORE"
 array = [[1,2], ["inner", ["eagle", "par", ["FORE", "hook"] ] ] ]
@@ -11,7 +10,7 @@ array = [[1,2], ["inner", ["eagle", "par", ["FORE", "hook"] ] ] ]
 #
 p array[1][1][2][0]
 
-# ============================================================
+# ...............................................................
 
 # Hole 2, Target element: "congrats!"
 hash = {outer: {inner: {"almost" => {3 => "congrats!"}}}}
@@ -20,8 +19,7 @@ hash = {outer: {inner: {"almost" => {3 => "congrats!"}}}}
 #
 p hash[:outer][:inner]["almost"][3]
 
-# # ============================================================
-
+# ...............................................................
 
 # # Hole 3, Target element: "finished"
 nested_data = {array: ["array", {hash: "finished"}]}
@@ -31,7 +29,7 @@ nested_data = {array: ["array", {hash: "finished"}]}
 p nested_data[:array][1][:hash]
 
 
-# ============================================================
+# ================================================================================
 =begin
 
 RELEASE 3: ITERATE OVER NESTED STRUCTURES
@@ -60,17 +58,22 @@ number_array.collect! { |element|
     element +=5
   end
 }
-p number_array
 
-
+# ...............................................................
 # REFACTORED SOLUTION
+
+number_array = [5, [10, 15], [20,25,30], 35]
 
 number_array.collect! { |element|
   element.kind_of?(Array) ? element.collect! {|inner| inner +=5} : element +=5 }
+
+
+# RELEASE 3 DRIVER CODE
+
 p number_array
 
 =begin
-============================================================
+# ================================================================================
 RELEASE 4: n-DIMENSIONAL ARRAYS (OPTIONAL)
 
 PSEUDOCODE
@@ -89,69 +92,63 @@ Iterate over the 1st level array
 
 =end
 
-# INITIAL SOLUTION
+# RELEASE 4: INITIAL SOLUTION (OPTIONAL)
 
 startup_names = ["bit", "quick", ["find", "fast", ["optimize", "scope"]]]
-puts
 
-## NOTE THIS INITIAL SOLUTION IS STILL A WORK IN PROGRESS AS IT IS NOT
-## TOTALLY WORKING YET. THE PLAN IS TO REFACTOR ONCE WE GET IT WORKING.
-## THIS IS THE CURRENT OUTPUT (the last 2 elements are still unchanged)
-##
-## ["bitly", "quickly", ["findly", "fastly", ["optimize", "scope"]]]
-
-array_new = []
-array_new_new = []
-startup_names.collect { |element|
-case  element.kind_of?(String)
-when true
-  p "STRING #{element}"
-  element +="ly"
-  array_new << element
-when false
-  element.collect { |inner|
-    if inner.kind_of?(String)
-      p "INNER #{inner}"
-      inner += "ly"
-    else inner.collect {|inner_inner|
-      p "INNER INNER #{inner_inner}"}
-      inner_inner +="ly" if inner_inner !=nil
+startup_names.each_index {|idx|
+  if startup_names[idx].kind_of?(String)
+    startup_names[idx] = startup_names[idx]+"ly"
+  else
+    startup_names[idx].each_index {|idx2|
+    if startup_names[idx][idx2].kind_of?(String)
+      startup_names[idx][idx2] = startup_names[idx][idx2]+"ly"
+    else
+      startup_names[idx][idx2].each_index {|idx3|
+      if startup_names[idx][idx2][idx3].kind_of?(String)
+        startup_names[idx][idx2][idx3] = startup_names[idx][idx2][idx3]+"ly"
+      end
+      }
     end
-    array_new_new << inner
-  }
-  array_new << array_new_new
-end
+    }
+  end
 }
 
-puts
+# ...............................................................
+# RELEASE 4: REFACTORED SOLUTION (OPTIONAL)
+#
+#  We haven't been able to come up with a good way to refactor this yet. But we'll
+#  get back to it and try again if we have some extra time at the end of the week.
+
+# RELEASE 4 : DRIVER CODE (OPTIONAL)
+
 p startup_names
-p array_new
 
 =begin
-============================================================
+==================================================================================
 RELEASE 5: REFLECT
 
 1. What are some general rules you can apply to nested arrays?
 
     Nested arrays generally follow the same rules as 1-dimensional arrays. You can
-    iterate over all of the elements in the entire array, or you can access any index
-    individually when you know the structure. If you don't know the structure it is
-    much more difficult to pick out individual elements.
+    iterate over all of the elements in the entire array, or you can access any
+    index individually when you know the structure. If you don't know the structure
+    it is much more difficult to pick out and/or interact with individual elements.
 
 2. What are some ways you can iterate over nested arrays?
 
-    #each and #collect (or #map) are ways to iterate over nested arrays.
+    #each/#each_index, #collect/#map, and #select are few ways to iterate over
+    nested arrays.
 
 3. Did you find any good new methods to implement or did you re-use one you were
    already familiar with? What was it and why did you decide that was a good option?
 
     We didn't find any new methods to use for this challenge so we re-used #collect.
-    We chose to do this for the required Release 3 because #collect has a bang option
-    that made it easy to modify the original array.
+    We chose to do this for Release 3 because #collect has a bang option that made it
+    easy to modify the original array.
 
-    We also chose to start with #collect on the optional challenge, Release 4. It is
-    our plan to refactor with something else if we can find it,but so far, the optional
-    challenge is still a work in progress and not completely working.
+    We chose to use #each_index on Release 4 (the optional challenge). #each_index
+    seemed like a good method to use because we wanted to access the inner indexes.
 
 =end
 
