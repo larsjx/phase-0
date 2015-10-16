@@ -3,7 +3,7 @@
 A NESTED ARRAY TO MODEL A BINGO BOARD - SOLO CHALLENGE
 
 I WORKED ON THIS CHALLENGE: Lars Johnson
-I SPENT HOURS ON THIS CHALLENGE: ____
+I SPENT HOURS ON THIS CHALLENGE: __7__
 
 ____________________________________________________________________________
 RELEASE 1: PSEUDOCODE
@@ -148,6 +148,8 @@ new_game.display_board
 
 # ___________________________________________________________________________
 # RELEASE 4: REFACTORED "TRUE BINGO" SOLUTION
+#
+# Please note: This refactored solution contains additional functionality
 =end
 
 class BingoBoard
@@ -193,7 +195,7 @@ class BingoBoard
     puts
   end
 
-         ##### RELEASE 5: TRUE BINGO BOARD GENERATOR #####
+  ##### RELEASE 5: TRUE BINGO BOARD GENERATOR #####
 
   def true_bingo
     @true_board = Array.new
