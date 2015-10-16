@@ -130,7 +130,6 @@ class BingoBoard
   end
 end
 
-
 # ___________________________________________________________________________
 # RELEASE 3: DRIVER CODE (I.E. METHOD CALLS)
 
@@ -148,8 +147,7 @@ new_game.display_board
 
 # ___________________________________________________________________________
 # RELEASE 4: REFACTORED "TRUE BINGO" SOLUTION
-#
-# Please note: This refactored solution contains additional functionality
+# This refactored solution contains functionality not in the initial solution
 =end
 
 class BingoBoard
@@ -195,7 +193,7 @@ class BingoBoard
     puts
   end
 
-  ##### RELEASE 5: TRUE BINGO BOARD GENERATOR #####
+  ##### RELEASE 5: OPTIONAL TRUE BINGO BOARD GENERATOR #####
 
   def true_bingo
     @true_board = Array.new
