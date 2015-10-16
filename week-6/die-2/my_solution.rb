@@ -66,21 +66,19 @@ INITIAL SOLUTION
 # Refactored Solution
 
 class Die
+
+  attr_reader :sides
+
   def initialize(labels)
-    if labels.length < 1
-    raise ArgumentError.new("ArgumentError")
-   end
+    raise ArgumentError.new("ARGUMENT ERROR!") if labels.length < 1
    @sides = labels.length
    @labels = labels
   end
-
-  attr_reader :sides
 
   def roll
     sides > 1 ? (@labels[rand(sides)]) : (@labels[0])
   end
 end
-
 
 # __________________________________
 # DRIVER TESTING
@@ -88,9 +86,8 @@ end
 # labels = ["a"]
 labels = %w(a b c d e f g)
 die = Die.new(labels)
-die.sides
-die.roll
-
+p die.sides
+p die.roll
 
 =begin
 
@@ -102,23 +99,23 @@ REFLECTION
 
    The two main differences are the change to label.length as the number of sides and
    the creation of an @labels instance variable. The only logic I changed was to add
-   an ELSE statement that returns the only lanel (index zero) for a one sided die.
+   an ELSE statement that returns the only label (index zero) for a one sided die.
 
 2. What does this exercise teach you about making code that is easily changeable or
    modifiable?
 
-   This exercise reinforces that easily modifiable code is of great value because it
-   can be a huge time saver in the development cycle.
+   This exercise reinforces that easily modifiable code is of great because it can
+   be a huge time and money saver in the development cycle. It's also easier to read.
 
 3. What new methods did you learn when working on this challenge, if any?
 
-    I used #attr_reader for the first time in this challenge, but I should have used
-    it last week too.
+    I used the reader method #attr_reader for the first time in this challenge, but
+    I should have used it in last week's challenge too and forgot.
 
 4. What concepts about classes were you able to solidify in this challenge?
 
     This challenge reinforced that Ruby classes are like a blueprint for making new
-    objects. Classes can have properties which get assigned to variables such as the
+    objects. Classes can have properties which are assigned to variables such as the
     number of sides and labels in this exercise and their objects can have behaviors,
     such as the rolling of our die. These behaviors are performed by method calls.
 
