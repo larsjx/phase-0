@@ -152,16 +152,10 @@ new_game.display_board
 
 class BingoBoard
 
-  def initialize(board)
-    @bingo_board = board
-  end
-
   def call
     @called_column = rand(5)
     @called_number = (1+(15*@called_column)..15*(@called_column+1)).to_a.sample
-    puts
-    puts "      CALLING #{"BINGO"[@called_column]}-#{@called_number}"
-    puts
+    puts "\n      CALLING #{"BINGO"[@called_column]}-#{@called_number} "
   end
 
   def check
@@ -173,24 +167,18 @@ class BingoBoard
   end
 
   def display_column
-    puts "       #{"BINGO"[@called_column]}"
+    puts "\n       #{"BINGO"[@called_column]}"
     puts "       ==="
     bingo_col = @bingo_board.transpose
     bingo_col[@called_column].each {|element|
-      if element == "XX"
-        puts "       #{element}   <=="
-      else
-        puts "       #{element}"
-      end
+      element == "XX" ? (puts "       #{element}   <==") : (puts "       #{element}")
     }
-    puts
   end
 
   def display_board
-    puts "        B   I   N  G   O"
+    puts "\n        B   I   N  G   O"
     puts "      ==================="
     @bingo_board.each { |element| puts "       " + element.join("  ").to_s }
-    puts
   end
 
   ##### RELEASE 5: OPTIONAL TRUE BINGO BOARD GENERATOR #####
@@ -214,22 +202,15 @@ class BingoBoard
 end
 
 # ___________________________________________________________________________
-# RELEASE 5: TRUE BINGO BOARD DRIVER CODE (Optional)
+# RELEASE 5: OPTIONAL TRUE BINGO BOARD DRIVER CODE
 
-
-model = [[1, 16, 31, 46, 61],
-        [11, 22, 38, 50, 64],
-        [8, 28, "@", 55, 71],
-        [13, 19, 35, 48, 66],
-        [15, 30, 45, 60, 75]]
-
-
-new_game = BingoBoard.new(model)
+new_game = BingoBoard.new
 new_game.true_bingo
 new_game.call
 new_game.check
 new_game.display_column
 new_game.display_board
+puts
 
 =begin
 ____________________________________________________________________________
