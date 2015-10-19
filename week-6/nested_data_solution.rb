@@ -96,17 +96,17 @@ Iterate over the 1st level array
 
 startup_names = ["bit", "quick", ["find", "fast", ["optimize", "scope"]]]
 
-startup_names.each_index {|idx|
-  if startup_names[idx].kind_of?(String)
-    startup_names[idx] = startup_names[idx]+"ly"
+startup_names.each_index {|idx1|
+  if startup_names[idx1].kind_of?(String)
+    startup_names[idx1] += "ly"
   else
-    startup_names[idx].each_index {|idx2|
-    if startup_names[idx][idx2].kind_of?(String)
-      startup_names[idx][idx2] = startup_names[idx][idx2]+"ly"
+    startup_names[idx1].each_index {|idx2|
+    if startup_names[idx1][idx2].kind_of?(String)
+      startup_names[idx1][idx2] += "ly"
     else
-      startup_names[idx][idx2].each_index {|idx3|
-      if startup_names[idx][idx2][idx3].kind_of?(String)
-        startup_names[idx][idx2][idx3] = startup_names[idx][idx2][idx3]+"ly"
+      startup_names[idx1][idx2].each_index {|idx3|
+      if startup_names[idx1][idx2][idx3].kind_of?(String)
+        startup_names[idx1][idx2][idx3] += "ly"
       end
       }
     end
