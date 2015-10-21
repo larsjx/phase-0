@@ -63,7 +63,8 @@ WITHOUT OVERWRITING EITHER OF THE ORIGINAL ARRAYS OR ANY OTHER VARIABLE:
 
   2. Sort (oddArray) elements from lowest to highest and store them in the array (oddSort)
      Divide the number of elements in (oddSort) by 2 and round down to nearest whole number.
-     Use that whole number as the index to grab and store the value at (oddSort[index]). Store the value of that element in a variable called (oddMedian).
+     Use that whole number as the index to grab and store the value at (oddSort[index]).
+     Store the value of that element in a variable called (oddMedian).
 
         Example: 1,2,3,[4],5,6,7  <-- 7 divided by 2 is 3.5. Index of 3 == value of 4
 
