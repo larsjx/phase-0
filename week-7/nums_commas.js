@@ -1,7 +1,7 @@
 
 /* SEPARATE NUMBERS WITH COMMAS IN JAVASCRIPT : ** PAIRING CHALLENGE **
 
-    WE WORKED ON THIS CHALLENGE: Lars Johnson and Chris Savage
+   WE WORKED ON THIS CHALLENGE: Lars Johnson and Chris Savage
 
 // ############################################### RELEASE 1: PSEUDOCODE
 
@@ -29,23 +29,24 @@ var number = function (num) {
   num = num.reverse().join("")
   console.log(num)
 }
+
+
+// CALLING THE FUNCTION
 num = 1000000
 number(num)
-
 
 // ############################################### RELEASE 4 : REFACTOR
 
 var number = function(num) {
   num = num.toString().split("").reverse();
-
   for (var index = 0; index < num.length - 3; index +=4){
       num.splice(index + 3, 0, ",");
   }
   return num.reverse().join("");
 };
 
-// CALLING THE FUNCTION
 
+// CALLING THE FUNCTION
 var num = 10000000
 number(10000000)
 console.log(number(num))
@@ -93,10 +94,9 @@ assert(
     Apart from the syntax, some of the methods were different in JavaScript. For
     example, JavaScript has #toString vs. #to_s in Ruby, Javascript has #splice
     vs. #insert in Ruby. We also had to find a way of giving our assert tests
-    visibility to the variable that we used (num). To do this we *initially*
-    created a globally scoped variable without the var keyword in our function.
-    That worked, but we later realized that we could just return the value of
-    num so long as it was declared outside of the function to begin with.
+    visibility to the variable that we used (num) and we realized that we could
+    do this by returning the value of (num) so long as it was declared outside of
+    the function to begin with.
 
 4. What built-in methods did you find to incorporate in your refactored solution?
 
