@@ -1,25 +1,25 @@
-// Eloquent JavaScript
+/*
+CHALLENGE 7.2 - ELOQUENT JAVASCRIPT
+Run this file in your terminal using 'node eloquent.js'
 
-// Run this file in your terminal using `node my_solution.js`. Make sure it works before moving on!
-
-// Program Structure
-// Write your own variable and do something to it.
+############################################## PROGRAM STRUCTURE
+WRITE YOUR OWN VARIABLE AND DO SOMETHING TO IT
+*/
 
 var total = 320;
 total = total + 30;
 console.log(total);
 
+/*
+############################################## REQUEST USER INPUT
+NOTE: THIS MUST BE RUN IN THE CHROME CONSOLE
 
-// Request User Input : Favorite Food
-// NOTE: THIS ONE MUST BE RUN IN THE CHROME CONSOLE
-
-// var favoriteFood = prompt(“What is your favorite food?”, “”);
-// console.log(“Hey That’s my favorite food too!”)
+      // var favoriteFood = prompt(“What is your favorite food?”, “”);
+      // console.log(“Hey That’s my favorite food too!”)
 
 
-// Complete one of the exercises: Looping a Triangle, FizzBuzz, or Chess Board
-
-// ########### LOOPING A TRIANGLE
+############################################## LOOPING A TRIANGLE
+*/
 
 var pound = "";
 for (i = 0; i < 7; i++) {
@@ -27,10 +27,9 @@ for (i = 0; i < 7; i++) {
     console.log(pound)
 }
 
-
-// Functions
-
-// Complete the `minimum` exercise.
+/*
+############################################## THE 'MININUM' EXERCISE
+*/
 
 function min(x, y) {
     if (x == y)
@@ -43,11 +42,10 @@ function min(x, y) {
 
 min(2, 4)
 
-
-
-// Data Structures: Objects and Arrays
-// Create an object called "me" that stores your name, age, 3 favorite foods, and a quirk below.
-
+/*
+############################################## CREATE A "ME" OBJECT
+STORE YOUR NAME, AGE, 3 FOODS, AND A QUIRK.
+*/
 
 var me = {
   name: "Lars",
@@ -57,3 +55,4 @@ var me = {
 };
 
 console.log(me.quirk)
+
