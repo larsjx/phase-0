@@ -36,14 +36,19 @@ number(num)
 // ############################################### RELEASE 4 : REFACTOR
 
 var number = function(num) {
-  answer = num.toString().split("").reverse();
-  for (var index = 0; index < answer.length - 3; index +=4)
-    answer.splice(index + 3, 0, ",");
-    answer = answer.reverse().join("");
-}
+  num = num.toString().split("").reverse();
 
+  for (var index = 0; index < num.length - 3; index +=4){
+      num.splice(index + 3, 0, ",");
+  }
+  return num.reverse().join("");
+};
+
+// CALLING THE FUNCTION
+
+var num = 10000000
 number(10000000)
-console.log(answer)
+console.log(number(num))
 
 // ############################################### RELEASE 3 : TESTS (OPTIONAL)
 
@@ -57,17 +62,16 @@ function assert(test, message, test_number) {
 }
 
 assert(
-  (typeof answer === 'string'),
-  "The value of answer should be a string.",
+  (typeof number(num) === 'string'),
+  "The value of num should be a string.",
   "1. "
 )
 
 assert(
-  answer === "10,000,000",
-  "The value of answer should be 10,000,000.",
+  number(num) === "10,000,000",
+  "The value of num should be 10,000,000.",
   "2. "
 )
-
 
 /*
 // ############################################### RELEASE 5 : REFLECTION
@@ -82,17 +86,17 @@ assert(
 2. What did you learn about iterating over arrays in JavaScript?
 
     We learned that there aren't quite as many built-in methods for iterating over
-    arrays in JavaScript as there are in Ruby. We also learned how to solve an issue
-    that we were having with a locally scoped variable not being visible outside of
-    our function.
+    arrays in JavaScript as there are in Ruby.
 
 3. What was different about solving this problem in JavaScript?
 
     Apart from the syntax, some of the methods were different in JavaScript. For
     example, JavaScript has #toString vs. #to_s in Ruby, Javascript has #splice
     vs. #insert in Ruby. We also had to find a way of giving our assert tests
-    visibility to the variable that we used (answer). To do this we removed the
-    keyword var from in front of the variable answer in our function.
+    visibility to the variable that we used (num). To do this we *initially*
+    created a globally scoped variable without the var keyword in our function.
+    That worked, but we later realized that we could just return the value of
+    num so long as it was declared outside of the function to begin with.
 
 4. What built-in methods did you find to incorporate in your refactored solution?
 
