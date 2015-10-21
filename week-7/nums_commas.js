@@ -1,6 +1,7 @@
+
 /* SEPARATE NUMBERS WITH COMMAS IN JAVASCRIPT : ** PAIRING CHALLENGE **
 
-WE WORKED ON THIS CHALLENGE: Lars Johnson and Chris Savage
+    WE WORKED ON THIS CHALLENGE: Lars Johnson and Chris Savage
 
 // ############################################### RELEASE 1: PSEUDOCODE
 
