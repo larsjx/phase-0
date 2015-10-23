@@ -9,19 +9,24 @@
 // ###########################################################
 // BULK UP
 
-function Athlete(name, event) {
+function Star(name, sport) {
   this.name = name,
-  this.event = event
+  this.event = sport
 }
 
-var sarah = new Athlete("Sarah Hughes", "Ice Skating");
-var michael = new Athlete("Michael Jordan", "Basketball");
+var sarah = new Star("Sarah Hughes", "Ladies\' Singles");
+var michael = new Star("Michael Jordan", "Basketball");
 
-var athleteArray = [sarah, michael];
-console.log(athleteArray);
+var newArray = [sarah, michael];
 
-sarah.win = sarah.name + " won at " + sarah.event;
+function Winner(athleteArray) {
+  athleteArray.forEach(function(star) {
+    star.win = star.name + " won at " + star.event + "!";
+  })
+}
 
+Winner(newArray);
+console.log(sarah.win);
 console.log(sarah);
 
 
@@ -89,6 +94,5 @@ console.log(michaelPhelps.name + " " + michaelPhelps.sport + " " + michaelPhelps
 
 
   3. How are constructors different from Ruby classes (in your research)?
-
 
 */
