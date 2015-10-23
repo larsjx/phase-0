@@ -83,8 +83,8 @@
 
 
 */
-// #################################################################
-// INITIAL SOLUTION
+// ######################################################################################
+// INITIAL TIC-TAC-TOE SOLUTION
 
 var game = {
   board: [[1,2,3],[4,5,6],[7,8,9]],
@@ -175,8 +175,11 @@ function check(board, select, state) {
 play_game(game.board, 0, "X")
 
 
-// #################################################################
-// REFACTORED SOLUTION
+// ######################################################################################
+// REFACTORED TIC-TAC-TOE SOLUTION
+//
+// CURRENTLY IN NODE DEMO MODE - COMPUTER vs. COMPUTER
+// CHANGE THE VALUE ON LINE 236 TO "X" IF YOU WANT TO PLAY vs. COMPUTER IN CHROME CONSOLE
 
 var game = {
   board: [[1,2,3],[4,5,6],[7,8,9]],
@@ -220,7 +223,7 @@ var game = {
       console.log()
       return
     }
-    player.takeTurn(board, selection, state)
+    player.makeSelection(board, selection, state)
   }
 }
 
@@ -229,16 +232,22 @@ var player = {
   state: "X",
   selection: 0,
 
-  takeTurn: function(board, selection, state) {
-    if (player.state === "CHANGE TO X FOR PLAYER INPUT") player.selection = player.selection;
+  makeSelection: function(board, selection, state) {
+    if (player.state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") {
+      selection = Number(prompt("Select an open spot between 1 and 9", game.openSpots));
+    }
     else selection = game.openSpots[Math.floor(Math.random() * game.openSpots.length)];
+    player.takeTurn(board, selection, state);
+  },
+
+  takeTurn: function(board, selection, state) {
     if (selection === undefined) {
-      console.log("\n       This game was a Tie!\n");
+      console.log("\n       This game is a Draw!\n");
       return;
     }
     else {
       console.log()
-      console.log("       " + state + " picks " + selection);
+      console.log("       " + player.state + " picks " + selection);
     }
     player.markSelection(board, selection, state)
   },
@@ -247,7 +256,7 @@ var player = {
     for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
         if (board[row][col] === selection) {
-          board[row][col] = state;
+          board[row][col] = player.state;
         }
       }
     }
@@ -258,16 +267,16 @@ var player = {
     }
     console.log("       =====");
     board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
-    if (state === "X") state = "O";
-    else state = "X";
+    if (player.state === "X") player.state = "O";
+    else player.state = "X";
       game.checkForWinner(board, selection, state)
     }
 }
 
-player.takeTurn(game.board, 0, "X")
+player.makeSelection(game.board, player.selection, "X")
 
 
-// #################################################################
+// ######################################################################################
 /* REFLECTION
 
   1. What was the most difficult part of this challenge?
