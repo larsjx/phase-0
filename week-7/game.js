@@ -178,7 +178,93 @@ play_game(game.board, 0, "X")
 // #################################################################
 // REFACTORED SOLUTION
 
+var game = {
+  board: [[1,2,3],[4,5,6],[7,8,9]],
+  openSpots: [1,2,3,4,5,6,7,8,9],
 
+  checkForWinner: function(board, selection, state) {
+    for(var row = 0; row < 3; row++) {
+      if (board[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+    }
+
+    // FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
+    var flipped = board[0].map(function(col, index) {
+      return board.map(function(row) {
+      return row[index]
+      })
+    });
+
+    for(var row = 0; row < 3; row++) {
+      if (flipped[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+    }
+
+    // CHECK FOR DIAGONAL WINS
+    if (board[1][1] === "X") {
+      if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
+      if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
+    }
+
+    if (board[1][1] === "O") {
+      if (board[0][0] === "O" && board[2][2] === "O") player.win = "O";
+      if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
+    }
+
+    // IF THERE'S A WINNER, REPORT IT AND END THE GAME
+    if (player.win === "X" || player.win === "O") {
+      console.log();
+      console.log("       " + player.win + " is the winner!");
+      console.log("       =====");
+      board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+      console.log()
+      return
+    }
+    player.takeTurn(board, selection, state)
+  }
+}
+
+var player = {
+  win: "",
+  state: "X",
+  selection: 0,
+
+  takeTurn: function(board, selection, state) {
+    if (player.state === "CHANGE TO X FOR PLAYER INPUT") player.selection = player.selection;
+    else selection = game.openSpots[Math.floor(Math.random() * game.openSpots.length)];
+    if (selection === undefined) {
+      console.log("\n       This game was a Tie!\n");
+      return;
+    }
+    else {
+      console.log()
+      console.log("       " + state + " picks " + selection);
+    }
+    player.markSelection(board, selection, state)
+  },
+
+  markSelection: function(board, selection, state) {
+    for(var row = 0; row < 3; row++) {
+      for(var col = 0; col < 3; col++) {
+        if (board[row][col] === selection) {
+          board[row][col] = state;
+        }
+      }
+    }
+    for(var remove = 0; remove < 9; remove++) {
+      if(game.openSpots[remove] === selection) {
+         game.openSpots.splice(remove, 1);
+      }
+    }
+    console.log("       =====");
+    board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+    if (state === "X") state = "O";
+    else state = "X";
+      game.checkForWinner(board, selection, state)
+    }
+}
+
+player.takeTurn(game.board, 0, "X")
 
 
 // #################################################################
