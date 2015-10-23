@@ -86,10 +86,93 @@
 // #################################################################
 // INITIAL SOLUTION
 
+var game = {
+  board: [[1,2,3],[4,5,6],[7,8,9]],
+  open: [1,2,3,4,5,6,7,8,9]
+}
+
+var player = {
+  win: "",
+  state: "X"
+}
+
+function play_game(board, select, state) {
+  if (state === "CHANGE TO X FOR PLAYER INPUT") select = select;
+  else select = game.open[Math.floor(Math.random() * game.open.length)];
+  if (select === undefined) {
+    console.log("\n       This game was a Tie!\n");
+    return;
+  }
+  else {
+    console.log()
+    console.log("       " + state + " picks " + select);
+  }
+  mark(board, select, state)
+}
+
+function mark(board, select, state) {        // make this board.mark
+  for(var row = 0; row < 3; row++) {
+      for(var col = 0; col < 3; col++) {
+        if (board[row][col] === select) {
+          board[row][col] = state;
+        }
+      }
+  }
+  for(var remove = 0; remove < 9; remove++) {
+    if(game.open[remove] === select) {
+       game.open.splice(remove, 1);
+    }
+  }
+  console.log("       =====");
+  board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+  if (state === "X") state = "O";
+  else state = "X";
+  check(board, select, state)
+}
+
+function check(board, select, state) {
+  for(var row = 0; row < 3; row++) {
+      if (board[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+  }
+
+// FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
+  var flipped = board[0].map(function(col, index) {
+    return board.map(function(row) {
+      return row[index]
+    })
+  });
+
+  for(var row = 0; row < 3; row++) {
+      if (flipped[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+  }
+
+// CHECK FOR DIAGONAL WINS
+  if (board[1][1] === "X") {
+    if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
+    if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
+  }
+
+  if (board[1][1] === "O") {
+    if (board[0][0] === "O" && board[2][2] === "O") player.win = "O";
+    if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
+  }
+
+// IF THERE'S A WINNER, REPORT IT AND END THE GAME
+  if (player.win === "X" || player.win === "O") {
+      console.log();
+      console.log("       " + player.win + " is the winner!");
+      console.log("       =====");
+      board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+      console.log()
+      return
+  }
+  play_game(board, select, state)
+}
 
 
-
-
+play_game(game.board, 0, "X")
 
 
 // #################################################################
