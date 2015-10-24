@@ -8,20 +8,21 @@
 
   YOUR MISSION DESCRIPTION: Tic-Tac-Toe
 
-           OVERALL MISSION: Get three Xs in a row
+           OVERALL MISSION: Get three Os in a row
 
-                     GOALS: Block computer from getting 3 Os in a row
-                            Get 3 Xs in a row
+                     GOALS: Block computer from getting three Xs in a row
+                            Get three Os in a row (horizontal, vertical or diaganol)
 
-                CHARACTERS: Player X (the user)
-                            Player O (the computer)
+                CHARACTERS: Player X (the computer goes first)
+                            Player O (the user)
 
-                   OBJECTS: 3 x 3 Board (2 dimensional array)
-                            Player X (character object)
-                            Player O (character object)
+                   OBJECTS: Three by three board (two dimensional array with nine slots)
+                            Player X (computer player object)
+                            Player O (user player object)
 
                  FUNCTIONS: Player X move
-                            Player Y move
+                            Player O move
+                            Check for and report win
 
 ###################################################################
 
@@ -31,6 +32,8 @@
   OUTPUT: Display "Computer will make the first move."
           IF three "X"'s or "O"'s in a row (horizontal, vertical, or diagonal)
             Display "The winner of this round is (winner)."
+          IF all slots are filled in
+            Display "This game is a Tie!"
           Display board with "X"'s and "O"'s
           Display "Please select an empty board position from 1 to 9:"
 
@@ -55,6 +58,9 @@
       Populate the (board) array element at index(p1Row)(p1Col) with string "X"
       Push the integer into (players.history)
 
+  << I streamlined the logic in #3 by keeping a list of the remaining open positions
+     and chosing the random number from that vs. choosing then checking availability >>
+
 4. Create a function (winnerYet)
     Determine if there is a winner
       IF any row or column contains all "X"s, set (players.winner) to "Player 1"
@@ -76,15 +82,17 @@
           IF the array element selected by user is not empty, ask again
           ELSE assign "X" to the array element selected by the user
 
-6. Create a function (showisplay results on screen
-
-
-
-
+  << I ended up defaulting to NODE DEMO MODE in which the computer plays against itself.
+     For this, I use the same streamlined logic as #3 above, choose random number from list.
+     To play in PLAYER VS COMPUTER MODE, change the string value on line 108 or 195 to "X"
+     In PLAYER VS. COMPUTER MODE, I accept the players number via Prompt in Chrome Console. >>
 
 */
 // ######################################################################################
 // INITIAL TIC-TAC-TOE SOLUTION
+//
+// THIS GAME IS CURRENTLY IN NODE DEMO MODE: COMPUTER vs. COMPUTER
+// TO PLAY USER vs. COMPUTER IN CHROME CONSOLE, CHANGE THE VALUE ON LINE 108 TO "X"
 
 var game = {
   board: [[1,2,3],[4,5,6],[7,8,9]],
@@ -97,7 +105,7 @@ var player = {
 }
 
 function play_game(board, select, state) {
-  if (state === "CHANGE TO X FOR PLAYER INPUT") select = select;
+  if (state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") select = select;
   else select = game.open[Math.floor(Math.random() * game.open.length)];
   if (select === undefined) {
     console.log("\n       This game was a Tie!\n");
@@ -110,7 +118,7 @@ function play_game(board, select, state) {
   mark(board, select, state)
 }
 
-function mark(board, select, state) {        // make this board.mark
+function mark(board, select, state) {
   for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
         if (board[row][col] === select) {
@@ -136,7 +144,6 @@ function check(board, select, state) {
       if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
   }
 
-// FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
   var flipped = board[0].map(function(col, index) {
     return board.map(function(row) {
       return row[index]
@@ -148,7 +155,6 @@ function check(board, select, state) {
       if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
   }
 
-// CHECK FOR DIAGONAL WINS
   if (board[1][1] === "X") {
     if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
     if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
@@ -159,7 +165,6 @@ function check(board, select, state) {
     if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
   }
 
-// IF THERE'S A WINNER, REPORT IT AND END THE GAME
   if (player.win === "X" || player.win === "O") {
       console.log();
       console.log("       " + player.win + " is the winner!");
@@ -178,54 +183,8 @@ play_game(game.board, 0, "X")
 // ######################################################################################
 // REFACTORED TIC-TAC-TOE SOLUTION
 //
-// CURRENTLY IN NODE DEMO MODE - COMPUTER vs. COMPUTER
-// CHANGE THE VALUE ON LINE 236 TO "X" IF YOU WANT TO PLAY vs. COMPUTER IN CHROME CONSOLE
-
-var game = {
-  board: [[1,2,3],[4,5,6],[7,8,9]],
-  openSpots: [1,2,3,4,5,6,7,8,9],
-
-  checkForWinner: function(board, selection, state) {
-    for(var row = 0; row < 3; row++) {
-      if (board[row].toString().split(",").join(" ") === "O O O") player.win = "O";
-      if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
-    }
-
-    // FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
-    var flipped = board[0].map(function(col, index) {
-      return board.map(function(row) {
-      return row[index]
-      })
-    });
-
-    for(var row = 0; row < 3; row++) {
-      if (flipped[row].toString().split(",").join(" ") === "O O O") player.win = "O";
-      if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
-    }
-
-    // CHECK FOR DIAGONAL WINS
-    if (board[1][1] === "X") {
-      if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
-      if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
-    }
-
-    if (board[1][1] === "O") {
-      if (board[0][0] === "O" && board[2][2] === "O") player.win = "O";
-      if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
-    }
-
-    // IF THERE'S A WINNER, REPORT IT AND END THE GAME
-    if (player.win === "X" || player.win === "O") {
-      console.log();
-      console.log("       " + player.win + " is the winner!");
-      console.log("       =====");
-      board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
-      console.log()
-      return
-    }
-    player.makeSelection(board, selection, state)
-  }
-}
+// THIS GAME IS CURRENTLY IN NODE DEMO MODE: COMPUTER vs. COMPUTER
+// TO PLAY USER vs. COMPUTER IN CHROME CONSOLE, CHANGE THE VALUE ON LINE 195 TO "X"
 
 var player = {
   win: "",
@@ -255,12 +214,12 @@ var player = {
   markSelection: function(board, selection, state) {
     for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
-        if (board[row][col] === selection) {
-          board[row][col] = player.state;
+        if (board[row][col] === selection) {        // IF THE SPOT NUMBER PLAYED IS STILL OPEN
+          board[row][col] = player.state;           // CHANGE THAT SPOT TO AN "X" OR "O" (STATE)
         }
       }
     }
-    for(var remove = 0; remove < 9; remove++) {
+    for(var remove = 0; remove < 9; remove++) {     // REMOVE SPOT JUST PLAYED FROM OPENSPOT LIST
       if(game.openSpots[remove] === selection) {
          game.openSpots.splice(remove, 1);
       }
@@ -273,6 +232,49 @@ var player = {
     }
 }
 
+var game = {
+  board: [[1,2,3],[4,5,6],[7,8,9]],
+  openSpots: [1,2,3,4,5,6,7,8,9],
+
+  checkForWinner: function(board, selection, state) {
+    for(var row = 0; row < 3; row++) {
+      if (board[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+    }
+
+    var flipped = board[0].map(function(col, index) {    // FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
+      return board.map(function(row) {
+      return row[index]
+      })
+    });
+
+    for(var row = 0; row < 3; row++) {
+      if (flipped[row].toString().split(",").join(" ") === "O O O") player.win = "O";
+      if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+    }
+
+    if (board[1][1] === "X") {                           // CHECK FOR DIAGONAL WINS
+      if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
+      if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
+    }
+
+    if (board[1][1] === "O") {
+      if (board[0][0] === "O" && board[2][2] === "O") player.win = "O";
+      if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
+    }
+
+    if (player.win === "X" || player.win === "O") {      // REPORT THE WINNER AND END THE GAME
+      console.log();
+      console.log("       " + player.win + " is the winner!");
+      console.log("       =====");
+      board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+      console.log()
+      return
+    }
+    player.makeSelection(board, selection, state)
+  }
+}
+
 player.makeSelection(game.board, player.selection, "X")
 
 
@@ -281,15 +283,37 @@ player.makeSelection(game.board, player.selection, "X")
 
   1. What was the most difficult part of this challenge?
 
+    There were three difficult parts to this challenge. One was coming up with an efficient
+    way of testing for the occurance of a win (3 across, 3 down, or diagonal) and I suspect
+    there may be something math-based that I didn't think of. The second was coming up with
+    the best structure of objects and functions and I think I did a pretty good job of that
+    in my refactoring. The last, and perhaps toughest part was coming up with a very simple
+    user interface that would accept the user's input without building a webpage. I decided
+    to do this in Chrome's JavaScript Console, but I'm not thrilled with the result so I'm
+    looking forward to a chance to put a web-based, interactive UI on top of this logic.
 
   2. What did you learn about creating objects and functions that interact with one another?
 
+    I learned that it's important from a functionality and readability standpoint to have a
+    good structure of objects (Player and Game) and their functions (make selection, mark
+    selction, and check for winner). I am still hoping there may be a way to use something
+    like instance variables accross the functions instead of passing variables as arguments,
+    but I didn't come up with any ways to do that in my research.
 
   3. Did you learn about any new built-in methods you could use in your refactored solution?
      If so, what were they and how do they work?
 
+     My refactored solution did more in terms of improving structure, flow and readability
+     than reducing code using built-in methods because I didn't really find any new ones
+     that looked more efficient than what I had found for my initial solution.
 
   4. How can you access and manipulate properties of objects?
 
+    Javascript object properties can be accessed via either dot or bracket notation. Most
+    style guides say to use dot notation (e.g., player.win) whenever possible, because it's
+    more concise and a bit easier to read than bracket notation (e.g., player["win"]).
+    However, bracket notation lets you access properties with special charachters such as
+    spaces in them, and it also lets you dynamically generate property names at runtime.
+    That's a very handy feature, but something I chose not do in this challenge.
 
 */
