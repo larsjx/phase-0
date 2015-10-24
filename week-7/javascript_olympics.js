@@ -89,10 +89,21 @@ console.log(michaelPhelps.name + " " + michaelPhelps.sport + " " + michaelPhelps
 
   1. What JavaScript knowledge did you solidify in this challenge?
 
+    I'm definitely still absorbing all of this, but I learned more about creating constructor
+    functions in this challenge.
 
   2. What are constructor functions?
 
+    JavaScript constructor functions are like Ruby instance methods in that changes are made
+    to instances of the function instead of universally across the script like they are with
+    changes made to the object of object literals. Their properties and methods are defined
+    with the keyword 'this' and the assignment operator '=', instead of a colon.
 
   3. How are constructors different from Ruby classes (in your research)?
+
+    As far as I can tell, JavaScript constructor functions are more like instance methods of
+    a Ruby class versus the class itself. Ruby uses objects inherited from a class (that is
+    every object is associated with a class) whereas in JavaScript the constructor function
+    itself creates the object.
 
 */
