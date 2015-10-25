@@ -106,7 +106,7 @@ var player = {
 }
 
 function play_game(board, select, state) {
-  if (state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") select = select;
+  if (state === "### CHANGE THIS TO X TO PLAY COMPUTER IN CHROME CONSOLE ###") select = select;
   else select = game.open[Math.floor(Math.random() * game.open.length)];
   if (select === undefined) {
     console.log("\n       This game was a Tie!\n");
@@ -207,7 +207,7 @@ var player = {
   selection: 0,
 
   makeSelection: function(board, selection, state) {
-    if (player.state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") {
+    if (player.state === "### CHANGE THIS TO X TO PLAY COMPUTER IN CHROME CONSOLE ###") {
       selection = Number(prompt("Select an open spot between 1 and 9", game.openSpots));
     }
     else selection = game.openSpots[Math.floor(Math.random() * game.openSpots.length)];
