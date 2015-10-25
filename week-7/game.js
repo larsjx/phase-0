@@ -190,15 +190,15 @@ TO PLAY AGAINST COMPUTER, PASTE CODE INTO CHROME CONSOLE & CHANGE VALUE ON 210 T
    LINE 209: PLAYER CHOOSES AN OPEN SPOT ON THE BOARD FROM 1 TO 9
    LINE 218: CHECK IF GAME IS A DRAW (NO OPEN SPOTS)
    LINE 224: IF NOT A DRAW, DISPLAY "(X or O) picks (SPOT)"
-   LINE 233: CHANGE SELECTED SPOT TO AN "X" OR "O" (STATE)
-   LINE 237: REMOVE JUST PLAYED SPOT FROM LIST OF OPEN SPOTS
-   LINE 242: DISPLAY THE CURRENT GAMEBOARD
-   LINE 244: SWITCH PLAYERS AND MOVE ON TO SEE IF THERE IS A WINNER
-   LINE 257: CHECK FOR ANY HORIZONTAL WINS
-   LINE 262: FLIP BOARD AND CHECK FOR ANY VERTICAL WINS
-   LINE 273: CHECK FOR ANY DIAGONAL WINS
-   LINE 283: IF THERE'S A WINNER REPORT THE WINNER AND END THE GAME
-   LINE 291: OR IF THERE'S NO WINNER, REPEAT GAMEPLAY WITH NEXT PLAYER
+   LINE 232: CHANGE SELECTED SPOT TO AN "X" OR "O" (STATE)
+   LINE 236: REMOVE JUST PLAYED SPOT FROM LIST OF OPEN SPOTS
+   LINE 238: DISPLAY THE CURRENT GAMEBOARD
+   LINE 240: SWITCH PLAYERS AND MOVE ON TO SEE IF THERE IS A WINNER
+   LINE 253: CHECK FOR ANY HORIZONTAL WINS
+   LINE 258: FLIP BOARD AND CHECK FOR ANY VERTICAL WINS
+   LINE 269: CHECK FOR ANY DIAGONAL WINS
+   LINE 279: IF THERE'S A WINNER REPORT THE WINNER AND END THE GAME
+   LINE 287: OR IF THERE'S NO WINNER, REPEAT GAMEPLAY WITH NEXT PLAYER
 */
 
 var player = {
@@ -229,15 +229,11 @@ var player = {
   markSelection: function(board, selection, state) {
     for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
-        if (board[row][col] === selection) {
-          board[row][col] = player.state;
-        }
+        if (board[row][col] === selection) board[row][col] = player.state;
       }
     }
     for(var remove = 0; remove < 9; remove++) {
-      if(game.openSpots[remove] === selection) {
-         game.openSpots.splice(remove, 1);
-      }
+      if(game.openSpots[remove] === selection) game.openSpots.splice(remove, 1);
     }
     console.log("       =====");
     board.forEach(function(value) { console.log("       " + value.join(" ")) })
