@@ -183,15 +183,15 @@ play_game(game.board, 0, "X")
 // ######################################################################################
 // REFACTORED TIC-TAC-TOE SOLUTION
 //
-// THIS GAME IS CURRENTLY IN NODE DEMO MODE: COMPUTER vs. COMPUTER
-// TO PLAY USER vs. COMPUTER IN CHROME CONSOLE, CHANGE THE VALUE ON LINE 195 TO "X"
+// FOR EASY TESTING IN NODE, THIS GAME IS CURRENTLY IN DEMO MODE: COMPUTER PLAYS COMPUTER
+// FOR USER TO PLAY COMPUTER IN THE CHROME CONSOLE, CHANGE THE VALUE ON LINE 195 TO "X"
 
 var player = {
   win: "",
   state: "X",
   selection: 0,
 
-  makeSelection: function(board, selection, state) {
+  makeSelection: function(board, selection, state) {     // PLAYER CHOOSES AN OPEN SPOT FROM 1 TO 9
     if (player.state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") {
       selection = Number(prompt("Select an open spot between 1 and 9", game.openSpots));
     }
@@ -199,13 +199,13 @@ var player = {
     player.takeTurn(board, selection, state);
   },
 
-  takeTurn: function(board, selection, state) {
+  takeTurn: function(board, selection, state) {          // CHECK IF GAME IS A DRAW
     if (selection === undefined) {
       console.log("\n       This game is a Draw!\n");
       return;
     }
     else {
-      console.log()
+      console.log()                                      // IF NO DRAW, DISPLAY THE PLAYER'S SELECTION
       console.log("       " + player.state + " picks " + selection);
     }
     player.markSelection(board, selection, state)
@@ -214,19 +214,19 @@ var player = {
   markSelection: function(board, selection, state) {
     for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
-        if (board[row][col] === selection) {        // IF THE SPOT NUMBER PLAYED IS STILL OPEN
-          board[row][col] = player.state;           // CHANGE THAT SPOT TO AN "X" OR "O" (STATE)
+        if (board[row][col] === selection) {
+          board[row][col] = player.state;                // CHANGE SELECTION TO AN "X" OR "O" (STATE)
         }
       }
     }
-    for(var remove = 0; remove < 9; remove++) {     // REMOVE SPOT JUST PLAYED FROM OPENSPOT LIST
+    for(var remove = 0; remove < 9; remove++) {          // REMOVE JUST PLAYED FROM LIST OF OPEN SPOTS
       if(game.openSpots[remove] === selection) {
          game.openSpots.splice(remove, 1);
       }
     }
-    console.log("       =====");
-    board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
-    if (player.state === "X") player.state = "O";
+    console.log("       =====");                         // DISPLAY THE CURRENT GAMEBOARD
+    board.forEach(function(value) { console.log("       " + value.join(" ")) })
+    if (player.state === "X") player.state = "O";        // SWITCH PLAYERS AND GOTO CHECK FOR WINNER
     else player.state = "X";
       game.checkForWinner(board, selection, state)
     }
@@ -237,49 +237,90 @@ var game = {
   openSpots: [1,2,3,4,5,6,7,8,9],
 
   checkForWinner: function(board, selection, state) {
+    var x = "X"
+    var o = "O"                                          // CHECK FOR HORIZONTAL WINS
     for(var row = 0; row < 3; row++) {
-      if (board[row].toString().split(",").join(" ") === "O O O") player.win = "O";
-      if (board[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+      if (board[row].join(" ") === "O O O") player.win = o;
+      if (board[row].join(" ") === "X X X") player.win = x;
     }
 
-    var flipped = board[0].map(function(col, index) {    // FLIP THE ARRAY AND CHECK COLUMNS AS ROWS
+    var flipped = board[0].map(function(col, index) {    // FLIP BOARD TO CHECK FOR VERTICAL WINS
       return board.map(function(row) {
       return row[index]
       })
     });
 
     for(var row = 0; row < 3; row++) {
-      if (flipped[row].toString().split(",").join(" ") === "O O O") player.win = "O";
-      if (flipped[row].toString().split(",").join(" ") === "X X X") player.win = "X";
+      if (flipped[row].join(" ") === "O O O") player.win = o;
+      if (flipped[row].join(" ") === "X X X") player.win = x;
     }
 
-    if (board[1][1] === "X") {                           // CHECK FOR DIAGONAL WINS
-      if (board[0][0] === "X" && board[2][2] === "X") player.win = "X";
-      if (board[0][2] === "X" && board[2][0] === "X") player.win = "X";
+    if (board[1][1] === x) {                             // CHECK FOR DIAGONAL WINS
+      if (board[0][0] === x && board[2][2] === x) player.win = x;
+      if (board[0][2] === x && board[2][0] === x) player.win = x;
     }
 
-    if (board[1][1] === "O") {
-      if (board[0][0] === "O" && board[2][2] === "O") player.win = "O";
-      if (board[0][2] === "O" && board[2][0] === "O") player.win = "O";
+    if (board[1][1] === o) {
+      if (board[0][0] === o && board[2][2] === o) player.win = o;
+      if (board[0][2] === o && board[2][0] === o) player.win = o;
     }
 
-    if (player.win === "X" || player.win === "O") {      // REPORT THE WINNER AND END THE GAME
+    if (player.win === x || player.win === o) {          // REPORT THE WINNER AND END THE GAME
       console.log();
       console.log("       " + player.win + " is the winner!");
       console.log("       =====");
-      board.forEach(function(value) { console.log("       " + value.toString().split(",").join(" ")) })
+      board.forEach(function(value) { console.log("       " + value.join(" ")) })
       console.log()
       return
     }
-    player.makeSelection(board, selection, state)
+    player.makeSelection(board, selection, state)        // OR REPEAT GAMEPLAY WITH NEXT PLAYER
   }
 }
 
-player.makeSelection(game.board, player.selection, "X")
+player.makeSelection(game.board, player.selection, "X")  // START A NEW GAME
 
+/*
+#########################################################################################
+   SCREEN CAPTURE OF SAMPLE RUN IN NODE DEMO MODE
 
-// ######################################################################################
-/* REFLECTION
+       X picks 5
+       =====
+       1 2 3
+       4 X 6
+       7 8 9
+
+       O picks 1
+       =====
+       O 2 3
+       4 X 6
+       7 8 9
+
+       X picks 3
+       =====
+       O 2 X
+       4 X 6
+       7 8 9
+
+       O picks 4
+       =====
+       O 2 X
+       O X 6
+       7 8 9
+
+       X picks 7
+       =====
+       O 2 X
+       O X 6
+       X 8 9
+
+       X is the winner!
+       =====
+       O 2 X
+       O X 6
+       X 8 9
+
+#########################################################################################
+   REFLECTION
 
   1. What was the most difficult part of this challenge?
 
@@ -290,7 +331,7 @@ player.makeSelection(game.board, player.selection, "X")
     in my refactoring. The last, and perhaps toughest part was coming up with a very simple
     user interface that would accept the user's input without building a webpage. I decided
     to do this in Chrome's JavaScript Console, but I'm not thrilled with the result so I'm
-    looking forward to a chance to put a web-based, interactive UI on top of this logic.
+    looking forward to a chance to build a web-based, interactive UI on top of this logic.
 
   2. What did you learn about creating objects and functions that interact with one another?
 
@@ -305,15 +346,17 @@ player.makeSelection(game.board, player.selection, "X")
 
      My refactored solution did more in terms of improving structure, flow and readability
      than reducing code using built-in methods because I didn't really find any new ones
-     that looked more efficient than what I had found for my initial solution.
+     that looked more efficient than what I had found for my initial solution. I did however,
+     realize that I was unnecessarily using #toString and #split before my use of #join which
+     is redundant because join automatically creates a string and splits it.
 
   4. How can you access and manipulate properties of objects?
 
     Javascript object properties can be accessed via either dot or bracket notation. Most
     style guides say to use dot notation (e.g., player.win) whenever possible, because it's
     more concise and a bit easier to read than bracket notation (e.g., player["win"]).
-    However, bracket notation lets you access properties with special charachters such as
-    spaces in them, and it also lets you dynamically generate property names at runtime.
-    That's a very handy feature, but something I chose not do in this challenge.
+    However, bracket notation lets you access properties with special characters such as
+    spaces in them. It also lets you dynamically generate property names at runtime which
+    could be a very handy feature, but it's something I chose not use in this challenge.
 
 */
