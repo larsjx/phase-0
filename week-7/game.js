@@ -1,8 +1,8 @@
 /*
 
-  SOLO CHALLENGE 7.7 : DESIGN A BASIC GAME
+SOLO CHALLENGE 7.7 : DESIGN A BASIC GAME
 
-  *** THIS IS A SOLO CHALLENGE ***
+*** THIS IS A SOLO CHALLENGE ***
 
 ###################################################################
 
@@ -26,7 +26,7 @@
 
 ###################################################################
 
-  PSEUDOCODE
+PSEUDOCODE
 
    INPUT: User picks number from one to nine representing position on a three by three board
   OUTPUT: Display "Computer will make the first move."
@@ -37,62 +37,63 @@
           Display board with "X"'s and "O"'s
           Display "Please select an empty board position from 1 to 9:"
 
-1. Create a new three by three array object (called board)
-    Create a property called (grid) and populate with an empty two dimensional array
-     of nine elements (three rows by three columns)
-      Initially populate each element in sequence with the integers one through nine (1-9)
-    Create a property called (history) and populate with a new empty array
+  1. Create a new three by three array object (called board)
+      Create a property called (grid) and populate with an empty two dimensional array
+       of nine elements (three rows by three columns)
+        Initially populate each element in sequence with the integers one through nine (1-9)
+      Create a property called (history) and populate with a new empty array
 
-2. Create a new object (called players)
-    Create a property called (winner) and populate with a new empty string
-    Create a child-object called (pOne)
-      Create a property called (wins)
-    Create a child-object called (pTwo)
-      Create a property called (wins)
+  2. Create a new object (called players)
+      Create a property called (winner) and populate with a new empty string
+      Create a child-object called (pOne)
+        Create a property called (wins)
+      Create a child-object called (pTwo)
+        Create a property called (wins)
 
-3. Create a function (playerOneMove)
-    pOne takes the first move:
-    Randomly select a number from zero to two and call it (p1Row)
-    Randomly select a second number from zero to two and call it (p1Col)
-    IF the (board) array element at index (p1Row)(p1Col) is an integer
-      Populate the (board) array element at index(p1Row)(p1Col) with string "X"
-      Push the integer into (players.history)
+  3. Create a function (playerOneMove)
+      pOne takes the first move:
+      Randomly select a number from zero to two and call it (p1Row)
+      Randomly select a second number from zero to two and call it (p1Col)
+      IF the (board) array element at index (p1Row)(p1Col) is an integer
+        Populate the (board) array element at index(p1Row)(p1Col) with string "X"
+        Push the integer into (players.history)
 
-  << I streamlined the logic in #3 by keeping a list of the remaining open positions
-     and chosing the random number from that vs. choosing then checking availability >>
+  >> I streamlined the logic in #3 by keeping a list of the remaining open positions
+     and chosing the random number from that vs. choosing then checking availability.
 
-4. Create a function (winnerYet)
-    Determine if there is a winner
-      IF any row or column contains all "X"s, set (players.winner) to "Player 1"
-      IF either diagonal contains all "X"s, set (players.winner) to "Player 1"
-      IF any row or column contains all "O"s, set (players.winner) to "Player 2"
-      IF either diagonal contains all "O"s, ser (players.winner) to "Player 2"
+  4. Create a function (winnerYet)
+      Determine if there is a winner
+        IF any row or column contains all "X"s, set (players.winner) to "Player 1"
+        IF either diagonal contains all "X"s, set (players.winner) to "Player 1"
+        IF any row or column contains all "O"s, set (players.winner) to "Player 2"
+        IF either diagonal contains all "O"s, ser (players.winner) to "Player 2"
 
-5. Create a function (showBoard)
-    IF (players.winner) does not equal ""
-      Display "The winner of this round is (players.winner)."
-      Reset the value of (players.winner) to ""
-    Display the (board) array on screen
+  5. Create a function (showBoard)
+      IF (players.winner) does not equal ""
+        Display "The winner of this round is (players.winner)."
+        Reset the value of (players.winner) to ""
+      Display the (board) array on screen
 
-6. Create a function (playerTwoMove)
-    Request the user's move:
-      Ask for input of an integer from one to nine, representing the nine "slots" on (board)
-        IF user's input is not an integer between one and nine, ask again
-        ELSE convert user's input to (userRow) and (userCol)
-          IF the array element selected by user is not empty, ask again
-          ELSE assign "X" to the array element selected by the user
+  6. Create a function (playerTwoMove)
+      Request the user's move:
+        Ask for input of an integer from one to nine, representing the nine "slots" on (board)
+          IF user's input is not an integer between one and nine, ask again
+          ELSE convert user's input to (userRow) and (userCol)
+            IF the array element selected by user is not empty, ask again
+            ELSE assign "X" to the array element selected by the user
 
-  << I ended up defaulting to NODE DEMO MODE in which the computer plays against itself.
-     For this, I use the same streamlined logic as #3 above, choose random number from list.
-     To play in PLAYER VS COMPUTER MODE, change the string value on line 108 or 195 to "X"
-     In PLAYER VS. COMPUTER MODE, I accept the players number via Prompt in Chrome Console. >>
+  >> NOTE: FOR EASY TESTING THIS NOW DEFAULTS TO NODE DEMO MODE in which the computer plays itself.
+     This uses the same streamlined logic as #3 above (selects at random from a list of open spots).
 
+     THE OTHER GAME MODE IS USER VERSUS COMPUTER in which the player's input is accepted via prompt
+     in the CHROME CONSOLE. To access this mode, change the string on line 109 or 210 to an "X"
+
+#########################################################################################
+INITIAL TIC-TAC-TOE SOLUTION
+
+FOR EASY TESTING IN NODE, THIS GAME IS CURRENTLY IN DEMO MODE: COMPUTER PLAYS COMPUTER
+TO PLAY AGAINST COMPUTER, PASTE CODE INTO CHROME CONSOLE & CHANGE VALUE ON 109 TO "X"
 */
-// ######################################################################################
-// INITIAL TIC-TAC-TOE SOLUTION
-//
-// THIS GAME IS CURRENTLY IN NODE DEMO MODE: COMPUTER vs. COMPUTER
-// TO PLAY USER vs. COMPUTER IN CHROME CONSOLE, CHANGE THE VALUE ON LINE 108 TO "X"
 
 var game = {
   board: [[1,2,3],[4,5,6],[7,8,9]],
@@ -179,19 +180,33 @@ function check(board, select, state) {
 
 play_game(game.board, 0, "X")
 
+/*
+#########################################################################################
+REFACTORED TIC-TAC-TOE SOLUTION
 
-// ######################################################################################
-// REFACTORED TIC-TAC-TOE SOLUTION
-//
-// FOR EASY TESTING IN NODE, THIS GAME IS CURRENTLY IN DEMO MODE: COMPUTER PLAYS COMPUTER
-// FOR USER TO PLAY COMPUTER IN THE CHROME CONSOLE, CHANGE THE VALUE ON LINE 195 TO "X"
+FOR EASY TESTING IN NODE, THIS GAME IS CURRENTLY IN DEMO MODE: COMPUTER PLAYS COMPUTER
+TO PLAY AGAINST COMPUTER, PASTE CODE INTO CHROME CONSOLE & CHANGE VALUE ON 210 TO "X"
+
+   LINE 209: PLAYER CHOOSES AN OPEN SPOT ON THE BOARD FROM 1 TO 9
+   LINE 218: CHECK IF GAME IS A DRAW (NO OPEN SPOTS)
+   LINE 224: IF NOT A DRAW, DISPLAY "(X or O) picks (SPOT)"
+   LINE 233: CHANGE SELECTED SPOT TO AN "X" OR "O" (STATE)
+   LINE 237: REMOVE JUST PLAYED SPOT FROM LIST OF OPEN SPOTS
+   LINE 242: DISPLAY THE CURRENT GAMEBOARD
+   LINE 244: SWITCH PLAYERS AND MOVE ON TO SEE IF THERE IS A WINNER
+   LINE 257: CHECK FOR ANY HORIZONTAL WINS
+   LINE 262: FLIP BOARD AND CHECK FOR ANY VERTICAL WINS
+   LINE 273: CHECK FOR ANY DIAGONAL WINS
+   LINE 283: IF THERE'S A WINNER REPORT THE WINNER AND END THE GAME
+   LINE 291: OR IF THERE'S NO WINNER, REPEAT GAMEPLAY WITH NEXT PLAYER
+*/
 
 var player = {
   win: "",
   state: "X",
   selection: 0,
 
-  makeSelection: function(board, selection, state) {     // PLAYER CHOOSES AN OPEN SPOT FROM 1 TO 9
+  makeSelection: function(board, selection, state) {
     if (player.state === "### CHANGE THIS TO X FOR 1 PLAYER IN CHROME CONSOLE ###") {
       selection = Number(prompt("Select an open spot between 1 and 9", game.openSpots));
     }
@@ -199,13 +214,13 @@ var player = {
     player.takeTurn(board, selection, state);
   },
 
-  takeTurn: function(board, selection, state) {          // CHECK IF GAME IS A DRAW
+  takeTurn: function(board, selection, state) {
     if (selection === undefined) {
       console.log("\n       This game is a Draw!\n");
       return;
     }
     else {
-      console.log()                                      // IF NO DRAW, DISPLAY THE PLAYER'S SELECTION
+      console.log()
       console.log("       " + player.state + " picks " + selection);
     }
     player.markSelection(board, selection, state)
@@ -215,20 +230,20 @@ var player = {
     for(var row = 0; row < 3; row++) {
       for(var col = 0; col < 3; col++) {
         if (board[row][col] === selection) {
-          board[row][col] = player.state;                // CHANGE SELECTION TO AN "X" OR "O" (STATE)
+          board[row][col] = player.state;
         }
       }
     }
-    for(var remove = 0; remove < 9; remove++) {          // REMOVE JUST PLAYED FROM LIST OF OPEN SPOTS
+    for(var remove = 0; remove < 9; remove++) {
       if(game.openSpots[remove] === selection) {
          game.openSpots.splice(remove, 1);
       }
     }
-    console.log("       =====");                         // DISPLAY THE CURRENT GAMEBOARD
+    console.log("       =====");
     board.forEach(function(value) { console.log("       " + value.join(" ")) })
-    if (player.state === "X") player.state = "O";        // SWITCH PLAYERS AND GOTO CHECK FOR WINNER
+    if (player.state === "X") player.state = "O";
     else player.state = "X";
-      game.checkForWinner(board, selection, state)
+    game.checkForWinner(board, selection, state)
     }
 }
 
@@ -238,13 +253,13 @@ var game = {
 
   checkForWinner: function(board, selection, state) {
     var x = "X"
-    var o = "O"                                          // CHECK FOR HORIZONTAL WINS
+    var o = "O"
     for(var row = 0; row < 3; row++) {
       if (board[row].join(" ") === "O O O") player.win = o;
       if (board[row].join(" ") === "X X X") player.win = x;
     }
 
-    var flipped = board[0].map(function(col, index) {    // FLIP BOARD TO CHECK FOR VERTICAL WINS
+    var flipped = board[0].map(function(col, index) {
       return board.map(function(row) {
       return row[index]
       })
@@ -255,7 +270,7 @@ var game = {
       if (flipped[row].join(" ") === "X X X") player.win = x;
     }
 
-    if (board[1][1] === x) {                             // CHECK FOR DIAGONAL WINS
+    if (board[1][1] === x) {
       if (board[0][0] === x && board[2][2] === x) player.win = x;
       if (board[0][2] === x && board[2][0] === x) player.win = x;
     }
@@ -265,7 +280,7 @@ var game = {
       if (board[0][2] === o && board[2][0] === o) player.win = o;
     }
 
-    if (player.win === x || player.win === o) {          // REPORT THE WINNER AND END THE GAME
+    if (player.win === x || player.win === o) {
       console.log();
       console.log("       " + player.win + " is the winner!");
       console.log("       =====");
@@ -273,15 +288,17 @@ var game = {
       console.log()
       return
     }
-    player.makeSelection(board, selection, state)        // OR REPEAT GAMEPLAY WITH NEXT PLAYER
+    player.makeSelection(board, selection, state)
   }
 }
 
-player.makeSelection(game.board, player.selection, "X")  // START A NEW GAME
+
+// DRIVER TEST CODE TO START A NEW GAME
+player.makeSelection(game.board, player.selection, "X")
 
 /*
 #########################################################################################
-   SCREEN CAPTURE OF SAMPLE RUN IN NODE DEMO MODE
+SCREEN CAPTURE OF SAMPLE RUN IN NODE DEMO MODE
 
        X picks 5
        =====
@@ -320,7 +337,7 @@ player.makeSelection(game.board, player.selection, "X")  // START A NEW GAME
        X 8 9
 
 #########################################################################################
-   REFLECTION
+REFLECTION
 
   1. What was the most difficult part of this challenge?
 
