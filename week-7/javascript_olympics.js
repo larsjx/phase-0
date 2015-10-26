@@ -1,17 +1,17 @@
-/*
 
+/*
   PEER PARING CHALLENGE 7.6: JAVASCRIPT OLYMPICS
 
   WE PAIRED ON THIS CHALLENGE: Becca Nelson & Lars Johnson
-  THIS CHALLENGE TOOK US: ___ Hours
+  THIS CHALLENGE TOOK US: 3 Hours
 
 */
-// ###########################################################
+// ################################################################################
 // BULK UP
 
 
 var athletes = [ sarah = { name: "Sarah Hughes", sport: "Ladies Singles"},
-                  michael = { name: "Michael", sport: "Mens Basketball"} ]
+                  michael = { name: "Michael Jordan", sport: "Mens Basketball"} ]
 
 var wins = function(athletes) {
   for (var key in athletes) {
@@ -21,33 +21,33 @@ var wins = function(athletes) {
 }
 
 wins(athletes)
-// console.log(array)
 
+// console.log(array)
 
 // The next solution is based on our initial interpretation of the instructions
 
-function Star(name, sport) {
-  this.name = name,
-  this.event = sport
-}
+// function Star(name, sport) {
+//   this.name = name,
+//   this.event = sport
+// }
 
-var sarah = new Star("Sarah Hughes", "Ladies Singles");
-var michael = new Star("Michael Jordan", "Basketball");
+// var sarah = new Star("Sarah Hughes", "Ladies Singles");
+// var michael = new Star("Michael Jordan", "Basketball");
 
-var newArray = [sarah, michael];
+// var newArray = [sarah, michael];
 
-function Winner(athleteArray) {
-  athleteArray.forEach(function(star) {
-    star.win = star.name + " won at " + star.event + "!";
-  })
-}
+// function Winner(athleteArray) {
+//   athleteArray.forEach(function(star) {
+//     star.win = star.name + " won at " + star.event + "!";
+//   })
+// }
 
-Winner(newArray);
-console.log(sarah.win);
-console.log(sarah);
+// Winner(newArray);
+// console.log(sarah.win);
+// console.log(sarah);
 
 
-// ###########################################################
+// ################################################################################
 // JUMBLE YOUR WORDS
 
 function stringReverse(string) {
@@ -59,7 +59,7 @@ function stringReverse(string) {
 stringReverse("Jumble your words!")
 
 
-// ###########################################################
+// ################################################################################
 // 2, 4, 6, 8! WHO DO YOU APPRECIATE?
 
 function checkEven(value, index) {
@@ -85,7 +85,7 @@ function evenNumbers(numbersArray) {
 }
 
 
-// ###########################################################
+// ################################################################################
 // WE BUILT THIS CITY
 
 
@@ -101,13 +101,12 @@ console.log(michaelPhelps.constructor === Athlete)
 console.log(michaelPhelps.name + " " + michaelPhelps.sport + " " + michaelPhelps.quote)
 
 /*
-/* ###########################################################
+// ################################################################################
 // REFLECTION
 
   1. What JavaScript knowledge did you solidify in this challenge?
 
-    I'm definitely still absorbing all of this, but I learned more about creating constructor
-    functions in this challenge.
+    I learned how to create and update objects and object properties inside of an array.
 
   2. What are constructor functions?
 
