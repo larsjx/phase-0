@@ -9,12 +9,29 @@
 // ###########################################################
 // BULK UP
 
+
+var athletes = [ sarah = { name: "Sarah Hughes", sport: "Ladies Singles"},
+                  michael = { name: "Michael", sport: "Mens Basketball"} ]
+
+var wins = function(athletes) {
+  for (var key in athletes) {
+    athletes[key].win = athletes[key].name + " won the " + athletes[key].sport
+    console.log(athletes[key])
+  }
+}
+
+wins(athletes)
+// console.log(array)
+
+
+// The next solution is based on our initial interpretation of the instructions
+
 function Star(name, sport) {
   this.name = name,
   this.event = sport
 }
 
-var sarah = new Star("Sarah Hughes", "Ladies\' Singles");
+var sarah = new Star("Sarah Hughes", "Ladies Singles");
 var michael = new Star("Michael Jordan", "Basketball");
 
 var newArray = [sarah, michael];
