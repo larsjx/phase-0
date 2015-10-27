@@ -31,9 +31,9 @@
 	SELECT state_name, population
 	FROM states
 	ORDER BY population DESC;
-   
+
 ####5. Select the state_name for the states in region 7.
-   
+
 	SELECT state_name
 	FROM states
 	WHERE region_id = 7;
@@ -44,36 +44,36 @@
 	FROM states
 	WHERE population_density > 50
 	ORDER BY population_density;
-	
+
 ####7. Select the state_name for states with a population between 1 million and 1.5 million people.
 
 	SELECT state_name
 	FROM states
 	WHERE population >= 1000000
 	AND population <= 1500000;
-	
+
 ####8. Select the state_name and region_id for states ordered by region in ascending order.
 
 	SELECT state_name, region_id
 	FROM states
 	ORDER BY region_id;
-	
+
 ####9. Select the region_name for the regions with "Central" in the name.
 
 	SELECT region_name
 	FROM regions
 	WHERE region_name LIKE '%Central%'
-	
+
 ####10. Select the region_name and the state_name for all states and regions in ascending order by region_id. Refer to the region by name. (This will involve joining the tables).
 
 	SELECT region_name, state_name
 	FROM regions, states
 	WHERE regions.id = states.region_id
 	ORDER BY regions.id;
-	
+
 ## Release 6: Your Own Schema
 
-###Make a simple schema design in Schema Designer to include a persons and outfits table. Be sure to connect them. Create at least 4 columns (with general types) for each table. One of the fields in the outfits table should refer to the id in the persons table. Reference the conventions file to read about database naming conventions. 
+###Make a simple schema design in Schema Designer to include a persons and outfits table. Be sure to connect them. Create at least 4 columns (with general types) for each table. One of the fields in the outfits table should refer to the id in the persons table. Reference the conventions file to read about database naming conventions.
 
 ![persons and outfits tables](persons_outfits.png)
 
@@ -97,7 +97,7 @@ A foreign key is a field (column) or group of fields in a relational database (c
 
 One selects information from an SQL database by issuing SQL (Structured Query Language) statements (or queries). SQL keywords are typically issued in uppercase, while column, table names, etc are entered in lowercase. Single quotes are also used instead of double quotes.
 
-Based on what we have learned so far, these SQL queries generally include the keyword SELECT, followed by one or more column names, and then the keyword FROM, followed by the name of the table to be selected from. It is also possible to use the keyword WHERE followed by a conditional statement such as user_id < 200 or title = 'Game of Thrones' plus any number of AND/OR statements to chain conditionals. These results can also be sorted using the keywords ORDER BY followed by the name of the column to sort on.
+Based on what we have learned so far, these SQL queries generally include the keyword SELECT, followed by one or more column names, and then the keyword FROM, followed by the name of the table to be selected from. It is also possible to use the keyword WHERE followed by a conditional statement such as user_id < 200 or title = 'Game of Thrones' plus any AND/OR statements to chain conditionals. These results can also be sorted using the keywords ORDER BY followed by the name of the column to sort on.
 
 
 
