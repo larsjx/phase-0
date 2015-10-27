@@ -85,7 +85,7 @@ Databases are software systems for storing, retrieving, and manipulating collect
 
 ####What is a one-to-many relationship?
 
-A one-to-many relationship is that in which a single record (or row) in a relational database   can relate directly to multiple rows of another table. A very common example of this would be customers and orders. One customer can have zero to many orders but an order can only have one customer.
+A one-to-many relationship is that in which a single record (or row) of one table in a relational database can relate directly to multiple rows of another table. A common example of this would be customers and orders. One customer can have zero to many orders but an order can only have one customer.
 
 ####What is a primary key? What is a foreign key? How can you determine which is which?
 
@@ -95,7 +95,9 @@ A foreign key is a field (column) or group of fields in a relational database (c
 
 ####How can you select information out of a SQL database? What are some general guidelines for that?
 
-One selects information from an SQL database by issuing SQL (Structured Query Language) statements. Based on what we have learned so far, these statements generally include the keyword SELECT, followed by one or more column names, and then the keyword FROM, followed by the name of the table to be selected from. It is also possible to use the keyword WHERE followed by a conditional statement such as user_id < 200 or title = 'Game of Thrones' plus any number of AND/OR statements to chain conditionals. Finally, these results can be sorted using the keyword ORDER BY followed by a column name to sort by.
+One selects information from an SQL database by issuing SQL (Structured Query Language) statements (or queries). SQL keywords are typically issued in uppercase, while column, table names, etc are entered in lowercase. Single quotes are also used instead of double quotes.
+
+Based on what we have learned so far, these SQL queries generally include the keyword SELECT, followed by one or more column names, and then the keyword FROM, followed by the name of the table to be selected from. It is also possible to use the keyword WHERE followed by a conditional statement such as user_id < 200 or title = 'Game of Thrones' plus any number of AND/OR statements to chain conditionals. These results can also be sorted using the keywords ORDER BY followed by the name of the column to sort on.
 
 
 
