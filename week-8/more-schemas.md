@@ -4,7 +4,7 @@
 
 ### Consider a situation in which you would use a one-to-one relationship. Then, create your own one-to-one schema using Schema Designer. Each table should have at least four fields (which can include created_at and updated_at).
 
-![one-to-one relationship](../imgs/one-to-one.png)
+![one-to-one relationship](/imgs/one-to-one.png)
 
 ####Explain why this relationship is a one-to-one to the best of your ability.
 
@@ -14,7 +14,7 @@ This is a one-to-one relationship because each car can only have one license pla
 
 ### Consider a grocery list. If you think about it, a grocery list has many items. Items can belong to many different grocery lists. Model the relationship between grocery_lists and items using Schema Designer. Each table should have at least four fields in each. You should also model the join table.
 
-![grocery list example](../imgs/many-to-many.png)
+![grocery list example](/imgs/many-to-many.png)
 
 ## Release 6: Reflect
 
