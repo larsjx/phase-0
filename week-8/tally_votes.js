@@ -213,9 +213,18 @@ REFLECTION
 
 1. What did you learn about iterating over nested objects in JavaScript?
 
+    This reinforced that iterating over nested objects is a matter of knowing the object's structure and
+    targeting each property and value with the appropriate notation. We used nested for..in loops to get
+    down to the right level in both of the objects (votes and voteCount) that we were targeting.
+
 2. Were you able to find useful methods to help you with this?
 
+    Unfortunately, we did not find any new methods that we could use for this challenge.
+
 3. What concepts were solidified in the process of working through this challenge?
+
+    THis was a tricky challenge! The concept of using nested for..in loops along with variable counters
+    for our tallys, and bracket notation for accessing properties/values were all solidified in this one.
 
 ##########################################################################################################
 TEST CODE: DO NOT ALTER THE CODE BELOW THIS LINE
