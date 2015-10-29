@@ -84,40 +84,38 @@ NOTES: This challenge is about iterating over an object (votes) ccontaining indi
           We must populate the officers object with the names of each winner in all four roles
 
 ABOUT TALLYVOTES
-  Our function tallyVotes should iterate through each voter in votes
-  Each voter is voting for 4 people across 4 different jobs
-  We created the variable (job) above in order to iterate through every property (job type)
+  Create a function called tallyVotes to iterate through each voter in votes
+    Each voter is voting for 4 people across 4 different jobs
+    We created the variable (job) above in order to iterate through every property (job type)
   For each voter in votes...
     TallyVotes iterates through the 4 jobs and their values (candidates) to populate voteCount
 
 ABOUT ELECTIONWINNER
-  Our function electionWinner should iterate through each property of each voteCount property
-  In other words, iterate through each candidate and tHe number of votes they received
-  We should also create a variable (record) and store the highest amount of votes for each job
+  Create a function called electionWinner to iterate through each property of each the voteCount object
+  In other words, iterate through each candidate and the number of votes they received
+  Create a variable (record) and store the highest amount of votes for each job
   The winner for each job will be the person with the highest voteCount in that job category
 
-// __________________________________________
-// Initial Solution
-// __________________________________________
-// Write your code below.
+##########################################################################################################
+INITIAL SOLUTION
 
-/*
+
 function tallyVotes(){
 
 // Iterate through each voter
 for (var voter in votes){
 
-  // iterate through each vote object (with 4 properties)
+  // iterate through each vote object (with 4 properties - one for each job)
   for (var i=0; i < job.length; i++){
 
     // create a variable equal to the "index"
-    var position = job[i]; // 1st loop is president, 2nd loop is Vice and so on.
+    var position = job[i]; // 1st loop is president, 2nd loop is vicePresident, and so on
 
-    // We create a variable query target equal to the finest degree of granularity of the dataset.
+    // We create a variable query target equal to the finest degree of granularity of the dataset
     // var queryTarget = votes[voter][position]
 
     // Conditional statement:
-    // hasOwnProperty method determines wheater an object has a property with the specified name.
+    // hasOwnProperty method determines wheater an object has a property with the specified name
     // If the object contains a property we are looking (queryTarget)
     if(voteCount[position].hasOwnProperty(votes[voter][position])){
       // Increment voteCount for this person by one
@@ -167,22 +165,23 @@ function electionWinner(){
 
 electionWinner();
 
+
+##########################################################################################################
+REFACTORED
 */
-// __________________________________________
-// Refactored Solution
 
 // Tallyvotes
 function tallyVotes(){
 for (var voter in votes){
   for (var i=0; i < job.length; i++){
     var jobs = job[i];
-    // We create a variable query target equal to the finest degree of granularity of the dataset.
+    // We create set variable querytarget equal to the finest degree of granularity of the dataset
     var queryTarget = votes[voter][jobs]
     if(voteCount[jobs].hasOwnProperty(queryTarget)){
       voteCount[jobs][queryTarget] += 1
     }
     else{
-      // Note: The very first time it goes through the encounter as a person it needs to remenber the encounter for this person as one person, not zero.
+      // The first time we encounter a person it counts as one vote (not zero)
       voteCount[jobs][queryTarget] = 1;
      }
   }
@@ -208,21 +207,24 @@ function electionWinner(){
 };
 electionWinner();
 
+/*
+##########################################################################################################
+REFLECTION
 
-// __________________________________________
-// Reflection
+1. What did you learn about iterating over nested objects in JavaScript?
 
+2. Were you able to find useful methods to help you with this?
 
+3. What concepts were solidified in the process of working through this challenge?
 
-
-// __________________________________________
-// Test Code:  Do not alter code below this line.
+##########################################################################################################
+TEST CODE: DO NOT ALTER THE CODE BELOW THIS LINE
 
 // Below you will find driver code. Run the code in this file either
 // from the command line using Node.js or by pasting the code of this
 // entire file into your browser console.  All tests will log true
 // in the console when they pass--false, otherwise.
-
+*/
 
 function assert(test, message, test_number) {
   if (!test) {
@@ -234,8 +236,11 @@ function assert(test, message, test_number) {
 }
 
 // TEST1:
-// if the voteCount encounters a president vote for bob in the viote object, it will create an object containing the name of the person (Bob) and add the value to his/her voteCount.
-// In the case of test1, the property BoB is contained in the object president, contained in the voteCount object should be now pointing to the value 3.
+// if the voteCount encounters a president vote for bob in the vote object, it will create an object
+// containing the name of the person (Bob) and add the value to his/her voteCount. In the case of test1,
+// the property bob, contained in the object president, contained in the voteCount object, should be now
+// pointing to the value 3.
+
 assert(
   (voteCount.president["Bob"] === 3),
   "Bob should receive three votes for President.",
@@ -243,8 +248,10 @@ assert(
 )
 
 // TEST2:
-// if the voteCount encounters a Vice President vote for bob in the viote object, it will create an object containing the name of the person (Bob) and add the value to his/her voteCount.
-// In the case of test1, the property BoB is contained in the object Vice President, contained in the voteCount object should be now pointing to the value 2.
+// if the voteCount encounters a vicePresident vote for bob in the vote object, it will create an object
+// containing the name of the person (Bob) and add the value to his/her voteCount. In the case of test1,
+// the property bob, contained in the object vicePresident, contained in the voteCount object, should be now
+// pointing to the value 2.
 assert(
   (voteCount.vicePresident["Bob"] === 2),
   "Bob should receive two votes for Vice President.",
@@ -252,8 +259,10 @@ assert(
 )
 
 // TEST3:
-// if the voteCount encounters a Secretary vote for bob in the viote object, it will create an object containing the name of the person (Bob) and add the value to his/her voteCount.
-// In the case of test1, the property BoB is contained in the object Secretary, contained in the voteCount object should be now pointing to the value 2.
+// if the voteCount encounters a secretary vote for bob in the vote object, it will create an object
+// containing the name of the person (Bob) and add the value to his/her voteCount. In the case of test1,
+// the property bob, contained in the object secretary, contained in the voteCount object, should be now
+// pointing to the value 3.
 assert(
   (voteCount.secretary["Bob"] === 2),
   "Bob should receive two votes for Secretary.",
@@ -261,8 +270,10 @@ assert(
 )
 
 // TEST4:
-// if the voteCount encounters a Treasurer vote for bob in the viote object, it will create an object containing the name of the person (Bob) and add the value to his/her voteCount.
-// In the case of test1, the property BoB is contained in the object Treasurer, contained in the voteCount object should be now pointing to the value 4.
+// if the voteCount encounters a treasurer vote for bob in the vote object, it will create an object
+// containing the name of the person (Bob) and add the value to his/her voteCount. In the case of test1,
+// the property bob, contained in the object treasurer, contained in the voteCount object, should be now
+// pointing to the value 4.
 assert(
   (voteCount.treasurer["Bob"] === 4),
   "Bob should receive four votes for Treasurer.",
@@ -270,9 +281,10 @@ assert(
 )
 
 // TEST5:
-// Function electionWinner should return Louise (name of the person with the highest amount of votes:5) for the role of president
-// In this case, the function electionWinner is querying the voteCount and returns the property in relation with the highest value for each office/job/position
-// Here, Louise should have the largest amount of votes and, hence, be leected as president.
+// Function electionWinner should return Louise (name of the person with the highest amount of votes:5) for
+// the role of president. In this case, the function electionWinner is querying the voteCount and returns the
+// property in relation with the highest value for each office/job/position. Here, Louise should have the
+// largest amount of votes and, hence, be elected as president.
 assert(
   (officers.president === "Louise"),
   "Louise should be elected President.",
@@ -280,7 +292,8 @@ assert(
 )
 
 // TEST6:
-// Here the function electionWinner should return the value of Hermann (name of the person with the highest amount of votes) for the role of vice president.
+// Here the function electionWinner should return the value of Hermann (name of the person with the highest
+// amount of votes) for the role of vice president.
 assert(
   (officers.vicePresident === "Hermann"),
   "Hermann should be elected Vice President.",
@@ -288,7 +301,8 @@ assert(
 )
 
 // TEST7:
-// Here the function electionWinner should return the value of Fred (name of the person with the highest amount of votes) for the role of vice Secretary.
+// Here the function electionWinner should return the value of Fred (name of the person with the highest amount
+// of votes) for the role of vice Secretary.
 assert(
   (officers.secretary === "Fred"),
   "Fred should be elected Secretary.",
@@ -296,18 +310,11 @@ assert(
 )
 
 // TEST8:
-// Here the function electionWinner should return the value of Ivy (name of the person with the highest amount of votes: 6) for the role of vice treasurer.
+// Here the function electionWinner should return the value of Ivy (name of the person with the highest amount
+// of votes) for the role of treasurer.
 assert(
   (officers.treasurer === "Ivy"),
   "Ivy should be elected Treasurer.",
   "8. "
 )
 
-
-// For each kind of job/office/position in the voteCount variable
-// voteCount
-  // variable scores = the amount of votes for this job for one person.
-  // Set a variable record equal to 0/null by default and store the maximum value of votes for every job.
-  // Iterate through every name in scores
-  // if one person is higher than the record, the person becomes the recordman
-  // record will be equal to
