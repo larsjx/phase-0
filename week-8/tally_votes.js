@@ -219,11 +219,13 @@ REFLECTION
 
 2. Were you able to find useful methods to help you with this?
 
-    Unfortunately, we did not find any new methods that we could use for this challenge.
+    The only new methods that we used for this challenge were the #hasOwnPropertyNames method that we used
+    to initially identify the four jobs within the officer object, and the #hasOwnProperty method that we
+    used to return a boolean which determined how each vote should be counted.
 
 3. What concepts were solidified in the process of working through this challenge?
 
-    THis was a tricky challenge! The concept of using nested for..in loops along with variable counters
+    This was a tricky challenge! The concept of using nested for..in loops along with variable counters
     for our tallys, and bracket notation for accessing properties/values were all solidified in this one.
 
 ##########################################################################################################
