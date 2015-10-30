@@ -170,19 +170,17 @@ electionWinner();
 REFACTORED
 */
 
-// Tallyvotes
+// TallyVotes
 function tallyVotes(){
-for (var voter in votes){
-  for (var i=0; i < job.length; i++){
-    var jobs = job[i];
-    // We create set variable querytarget equal to the finest degree of granularity of the dataset
-    var queryTarget = votes[voter][jobs]
-    if(voteCount[jobs].hasOwnProperty(queryTarget)){
-      voteCount[jobs][queryTarget] += 1
+for (var voter in votes){                 // iterate through each voter in votes object
+  for (var i=0; i < job.length; i++){     // iterate through each job being voted for
+    var jobs = job[i];                    // the var (job) cycles through president, vp, secretary, treasurer
+    var queryTarget = votes[voter][jobs]  // the person being voted for a particular (job) in this iteration
+    if(voteCount[jobs].hasOwnProperty(queryTarget)){   // if voteCount(job) already has that person listed
+      voteCount[jobs][queryTarget] += 1                // increase the tally for that person in that (job)
     }
     else{
-      // The first time we encounter a person it counts as one vote (not zero)
-      voteCount[jobs][queryTarget] = 1;
+      voteCount[jobs][queryTarget] = 1;  // irst time we encounter a person it counts as one vote (not zero)
      }
   }
 }
@@ -192,20 +190,23 @@ tallyVotes();
 
 // electionWinner
 function electionWinner(){
-  for (var jobs in voteCount){
-  var scores = voteCount[jobs];
-    var highestValue = null;
+  for (var jobs in voteCount){           // for each (job) in voteCount
+  var scores = voteCount[jobs];          // (scores) equals everyone who was voted for in that (job) with # of votes
+    var highestValue = null;             // create empty highestValue and winner variables
     var winner = null;
-      for (var name in scores){
-      if(scores[name] > highestValue){
+      for (var name in scores){          // iterate over each name in (scores)
+      if(scores[name] > highestValue){   // if value of that name is > highest value, set highestValue equal to name
       highestValue = scores[name];
-      winner = name;
+      winner = name;                     // set winner equal to each (name) that achieves highestValue for each (job)
       }
     }
-    officers[jobs] = winner;
+    officers[jobs] = winner;             // set officer[job] to each winner
   }
 };
 electionWinner();
+
+
+
 
 /*
 ##########################################################################################################
