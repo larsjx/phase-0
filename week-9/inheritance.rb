@@ -1,21 +1,84 @@
 =begin
-################################################################################
-# INTRODUCTION TO INHERITANCE
-#
-# WE WORKED ON THIS CHALLENGE: Marie-France Han & Lars Johnson
+###################################################################################################
+INTRODUCTION TO INHERITANCE
 
-################################################################################
-# PSEUDOCODE
+WE WORKED ON THIS CHALLENGE: Marie-France Han & Lars Johnson
 
-   INPUT: A list of students comprising each local cohort
-  OUTPUT:
+Cohort records have many attributes and methods. Some of them are attributes of Cohort, and some
+are of LocalCohort. Consider the following attributes and methods and then decide where they belong,
+keeping in mind some of them may belong in both. It's important to note that a Cohort includes all
+students who start Phase 0 at the same time, regardless of their location. LocalCohorts are grouped
+by location and Phase 0 start date.
 
+###################################################################################################
+PSEUDOCODE
 
+LOCAL CLASS
+   INPUT: The list of students comprising a particular local cohort (an array)
+  OUTPUT: The list of students in a particular local cohort
+          The number of students in a particular local cohort
+          The email list for students of a particular local cohort
 
-################################################################################
-# INITIAL SOLUTION WITH ARRAY DATA STRUCTURE
-=end
-=begin
+NATIONAL CLASS
+   INPUT: The National cohort's names (a string)
+          The list of cities in which each cohort resides (an array)
+          The list of students in each city (three arrays)
+          The start date (a string in date format)
+  OUTPUT: The list of students comprising the national cohort
+          The number of students in the national cohort
+          The email list for the national cohort
+          The national cohort's Phase-0 start date
+          The national cohort's immersive start date
+          The national cohort's current Phase based on today's date
+          The national cohort's graduation date
+          True or False depending on whether or not the national cohort has graduated
+
+  REQUIRED ATTRIBUTES:
+    cities                      - Attribute of national cohort
+    students                    - Attribute of national and local cohorts
+    cohort_name                 - Attribute of national cohorts
+    names (student names)       - Attribute of both national and local cohorts
+    p0_start_date               - Attribute of national cohort
+    immersive_start_date        - Attribute of national cohort
+    graduation_date             - Attribute of national cohort
+    email_list                  - Attribute of both national and local cohorts
+    num_students                - Attribute of both national and local cohorts
+
+  REQUIRED METHODS:
+    add_student
+    remove_student
+    current_phase
+    graduated?
+
+1. Create a class for the local cohort
+    Accept a list (an array) of names for each instance (city) of the local cohort
+    Allow the list of names to be modified (names added or removed) for each city
+    Create an email list for the students in each city
+    Return the list of names, email list, or number of students upon request
+
+2. Create a class for the national cohort called GlobalCohort
+    Accept the GlobalCohort's name
+    Accept a list of cities
+    Accept a list (an array) of names from each instance (city) of the local cohort
+    Accept a start date for phase 0
+    ** Put each list of names into a hash with the key equal to city and values equal to names
+    Allow the list of names to be modified (names added or removed) for each city
+    Create a national email list for all students
+    Return the cohort name, list of names, email list, or number of students upon request
+    Return the start date, phase-1 start date, and graduation date upon request
+    Return the current phase based on today's date upon request
+    Return true or false based on whether or not this cohort has graduated
+
+**NOTES: We originally created this with an array data structure but I wanted to refine this
+         by using a hash, so I added that into the pseudocode after updating our solution. I
+         also just realized how to use the cohort name in order to track multiple cohorts
+         at the same time (copperheads, island foxes, etc). However, that was not part of our
+         original solution and it would require an additional level in our data structure, so
+         we haven't added that extra functionality in yet.
+
+###################################################################################################
+INITIAL SOLUTION WITH ARRAY DATA STRUCTURE
+
 
 class GlobalCohort
 
@@ -92,8 +155,6 @@ class LocalCohort < GlobalCohort
     end
 end
 
-
-
 chicago = LocalCohort.new(["Parminder", "Josh", "Becca", "Gabrielle"])
 newyork = LocalCohort.new(["Bruno", "Marie-France", "Eunice", "Jon"])
 sanfran = LocalCohort.new(["Nicole","Paul", "Jeremy", "Danielle"])
@@ -108,140 +169,190 @@ copperheads.graduated
 copperheads.create_email
 copperheads.num_students
 
+###################################################################################################
+INITIAL SOLUTION WITH HASH DATA STRUCTURE
 =end
-
-################################################################################
-# INITIAL SOLUTION WITH HASH DATA STRUCTURE
 
 class Cohort
 
-  attr_reader :cities, :ny_names, :ch_names, :sf_names, :name, :p0, :check_date
-  attr_accessor :names
+  attr_accessor :students
 
-    def initialize (cities, ny_names, ch_names, sf_names, p0)
+    def initialize (name, cities, ny_students, ch_students, sf_students, p0)
+      @cohort_name = name
       @cities = cities
-      @names = {"New York" => ny_names, "Chicago" => ch_names, "San Fran" => sf_names }
+      @students = {"New York" => ny_students, "Chicago" => ch_students, "San Fran" => sf_students }
       require "date"
       @day = Date.today
       @p0 = Date.parse(p0)
-      @p1 = @p0 + 63
-      @p2 = @p1 + 21
-      @p3 = @p2 + 21
-      @grad = @p3 + 21
+      @phase = [@p0, (@p0+7*9), (@p0+7*12), (@p0+7*15), (@p0+7*19)]
       @email = []
     end
 
-  def create_email
-     @names.each_key { |key|
-        @names[key].each { |element|
+  def cohort_name
+    @cohort_name
+  end
+
+  def p0_start_date
+    @p0.strftime("%m/%d/%Y")
+  end
+
+  def immersive_start_date
+    (@p0+7*9).strftime("%m/%d/%Y")
+  end
+
+  def current_phase
+    if @day >= @phase[4]
+      return "Graduated"
+    elsif @day >= @phase[3]
+      return "Phase-3"
+    elsif @day >= @phase[2]
+      return "Phase-2"
+    elsif @day >= @phase[1]
+       return "Phase-1"
+    else
+       return "Phase-0"
+      end
+  end
+
+  def graduation_date
+    (@p0+7*19).strftime("%m/%d/%Y")
+  end
+
+  def graduated?
+    (@p0+7*19) <= @day
+  end
+
+   def num_of_students
+    @num_students = 0
+      @students.each_key { |key|
+        @num_students += @students[key].length
+      }
+      @num_students
+    end
+
+    def add(city, name)
+      @students[city] << name
+      @students[city].flatten!
+    end
+
+    def remove(city, name)
+      @students[city].each do |element|
+        if element == name
+          @students[city].delete(element)
+        end
+      end
+    end
+
+   def email_list
+     @students.each_key { |key|
+        @students[key].each { |element|
           @email.push(element + "@dbc.com")
         }
       }
       return @email
-   end
-
-   def students
-    @students = 0
-      @names.each_key { |key|
-        @students += @names[key].length
-      }
-      return @students
     end
 
-    def add(city, name)
-      @names[city] << name
-      @names[city].flatten!
-    end
-
-    def remove(city, name)
-      @names[city].each do |element|
-        if element == name
-          @names[city].delete(element)
-        end
-      end
-    end
-
-    def what_phase(check_date)
-      check_date != "" ? @day = Date.parse(check_date) : @day = Date.today
-      if @day < @p1
-        return "Currently in Phase-0"
-      elsif @day > @p1  &&  @day < @p2
-        return "Currently in Phase-1"
-      elsif @day > @p2  &&  @day < @p3
-        return "Currently in Phase-2"
-      elsif @day > @p3  &&  @grad
-        return "Currently in Phase-3"
-      end
-    end
-
-    def graduating
-      if @day > @grad
-        return "Graduated"
-      else
-        return "Graduating on #{@grad}"
-      end
-    end
 end
-
 
 class LocalCohort < Cohort
 
-  attr_accessor :students
-
     def initialize (students)
-      @names = students
+      @students = students
     end
 
     def add(student_name)
-      @names << student_name
+      @students << student_name
     end
 
     def remove(student_name)
-      @names.each { |element|
+      @students.each { |element|
         if element == student_name
-        @names.delete(element)
+        @students.delete(element)
         end
       }
+    end
+
+    def num_of_students
+      @students.length
+    end
+
+    def email_list
+      @city_email_list = []
+      @students.each { |element|
+        @city_email_list << element + "@dbc.com"
+      }
+      return @city_email_list
     end
 
 end
 
 
+=begin
+###################################################################################################
+DRIVER TEST CODE
+=end
+
+name = "Copperheads"
 cities = ["New York", "Chicago", "San Francisco"]
 ny = LocalCohort.new(["Bruno", "Marie-France", "Eunice", "Jon"])
 ch = LocalCohort.new(["Parminder", "Josh", "Becca", "Gabrielle"])
 sf = LocalCohort.new(["Nicole","Paul", "Jeremy", "Danielle"])
-copperheads = Cohort.new(cities, ny.names, ch.names, sf.names, "07-09-2015")
+copperheads = Cohort.new(name, cities, ny.students, ch.students, sf.students, "07-09-2015")
+
+p copperheads.email_list
+p ny.email_list
+puts
 
 ny.add("Hilary")
 ny.remove("Bruno")
-
-p copperheads.names
+p copperheads.students
 puts
+
 copperheads.add("New York", "Bruno")
 copperheads.remove("San Fran", "Nicole")
-puts
-p copperheads.names
-puts
-p copperheads.create_email
-puts
+sf.add("Kyle")
 p copperheads.students
-p copperheads.what_phase("03-03-2016")
-p copperheads.graduating
 puts
-p ny.names
-p sf.names
-p ch.names
+
+p copperheads.num_of_students
+
+p ny.num_of_students
+p ch.num_of_students
+p sf.num_of_students
+puts
+
+p ny.students
+p ch.students
+p sf.students
+puts
+
+p copperheads.cohort_name
+p copperheads.p0_start_date
+p copperheads.immersive_start_date
+p copperheads.graduation_date
+p copperheads.current_phase
+p copperheads.graduated?
+
 
 =begin
-################################################################################
+###################################################################################################
 # REFLECTION
 
 1. What concepts did you review in this challenge?
 
+    We reviewed lots of concepts in this challenge. Attr_reader, attr_writer, attr_accessor, array
+    and hash manipulation, class creation, instance methods and instance variables, etc. We also
+    learned a bit about inheritance.
+
 2. What is still confusing to you about Ruby?
 
+    Inheritance and how best to use it is still a bit confusing to me (looking forward to phase-1).
+
 3. What are you going to study to get more prepared for Phase 1?
+
+    Phase 1 begins in 2 days and I still have some classwork to do so unfortunately, I don't think
+    there will be very much time for extra studying. If I have do have some time, I'm planning to
+    look into jQuery and manipulating the DOM with JavaScript a bit more
 
 =end
 
