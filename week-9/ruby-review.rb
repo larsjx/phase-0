@@ -1,9 +1,9 @@
-###############################################################################
-# CIPHER CHALLENGE
+###################################################################################################
+# THE DR EVIL CIPHER CHALLENGE
 #
 # I WORKED ON THIS CHALLENGE: Lars Johnson
 
-###############################################################################
+###################################################################################################
 # INITIAL SOLUTION
 #
 # WRITE YOUR COMMENTS ON WHAT EACH THING IS DOING
@@ -65,7 +65,7 @@ def dr_evils_cipher(coded_message)             # Method receives coded_message a
 end
 
 =end
-###############################################################################
+###################################################################################################
 # MY REVISED AND PREFERRED SOLUTION (BUT THIS DOESN"T PASS THE TESTS)
 
 =begin
@@ -112,9 +112,28 @@ p code.decipher("m^aerx%e&gsoi!")
 
 =end
 
-##############################################################################
-# MY REFACTORED SOLUTION
+###################################################################################################
+# MY 2ND REFACTORED SOLUTION (FINAL VERSION)
 
+def dr_evils_cipher(cipher)
+  plain_key = "a" + "c".upto("z").to_a.join("")+"f"
+  plain_key << %w(@ # $ % ^ & *).join("")
+  cipher_key = "eghijklmnopqrstuvwxyzabcdf"
+  decoded = []
+
+  cipher.split("").each { |element|
+    unless cipher_key.index(element) == nil
+      decoded << plain_key[cipher_key.index(element)]
+    else
+      plain_key.index(element) == nil ? decoded << element : decoded << " "
+    end
+  }
+  decoded.join("")
+end
+
+###################################################################################################
+# MY FIRST REFACTORED SOLUTION
+=begin
 def dr_evils_cipher(cipher)
   plain_key = "acdefghijklmnopqrstuvwxyz"
   cipher_key = "eghijklmnopqrstuvwxyzabcd"
@@ -144,9 +163,9 @@ def dr_evils_cipher(cipher)
   end
   p plaintext
 end
+=end
 
-
-###############################################################################
+###################################################################################################
 # DRIVER TEST CODE
 
 # ALL OF THIS DRIVER TEST CODE SHOULD RETURN TRUE
@@ -159,5 +178,30 @@ p dr_evils_cipher("qmrm#qi,*mj^m#iziv^pswx#csy#m^hsr'x%orsa^alex@m%asyph^hs.
 @m'h%tvsfefpc%qszi$sr%erh*kix#ersxliv$gpsri@fyx*xlivi@asyph^fi@e^15&qmryxi@tivmsh%xlivi$alivi*m*asyph&nywx^fi$mrgsrwspefpi.") == "mini me, if i ever lost you i don't know what i would do.\n i'd profafly move on and get another clone fut there would fe a 15 minute period there where i would just fe inconsolafle."
 p dr_evils_cipher("alc@qeoi*e$xvmppmsr^alir#ai*gsyph%qeoi...#fmppmsrw?") == "why make a trillion when we could make... fillions?"
 
-###############################################################################
+=begin
+###################################################################################################
 # REFLECTION
+
+1. What concepts did you review in this challenge?
+
+    I reviewed the following concepts in this challenge:
+      - Joining arrays
+      - Splitting string
+      - iterating over arrays
+      - good use of nil
+      - #index() method
+      - implicit returns
+
+2. What is still confusing to you about Ruby?
+
+    I believe I have a decent understanding of the basics of Ruby, but I also know that I have much,
+    much more to learn.
+
+3. What are you going to study to get more prepared for Phase 1?
+
+    Phase 1 begins in 2 days and I still have some classwork to do so unfortunately, I don't think
+    there will be very much time for extra studying. If I have do have some time, I'm planning to
+    look into jQuery and manipulating the DOM with JavaScript a bit more.
+
+
+=end
